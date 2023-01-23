@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled, Button, Dialog } from "@mui/material";
 import Link from "next/link";
 import { COLORS } from "../utils/constants";
 import { TextField } from "@mui/material";
@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export const MainStyled = styled("div")({
 	height: "100vh",
-    backgroundColor: COLORS.lightOlive,
+    backgroundColor: COLORS.lightTeal,
 })
 
 export const BodyStyled = styled("div")({
@@ -44,10 +44,64 @@ export const TextFieldStyled = styled(TextField)({
 	// borderLeft: "1px solid black",
 });
 
-
 export const SearchIconStyled = styled(SearchIcon)({
 	position: "absolute",
     top: "40px",
     left: "420px",
 	
+});
+
+export const FormButton = styled(Button)({
+	textTransform: "none",
+	color: COLORS.scarlet,
+	border: "1px solid dimgray",
+	fontSize: "20px",
+	backgroundColor: COLORS.lightOlive,
+	padding: "1px 8px",
+	"&:hover": {
+		backgroundColor: COLORS.lightTeal,
+		border: "1px solid dimgray",
+	},
+});
+
+export const ContactButton = styled(Button)({
+	textTransform: "none",
+	color: COLORS.scarlet,
+	border: "1px solid dimgray",
+	fontSize: "20px",
+	backgroundColor: COLORS.lightTeal,
+	padding: "1px 8px",
+	"&:hover": {
+		backgroundColor: "gray",
+		color: COLORS.lightOlive,
+		border: "1px solid dimgray",
+	},
+});
+
+export const SaveButton = styled(Button)({
+	textTransform: "none",
+	color: COLORS.lightOlive,
+	border: "1px solid dimgray",
+	fontSize: "20px",
+	backgroundColor: COLORS.lightTeal,
+	padding: "1px 8px",
+	"&:hover": {
+		backgroundColor: "gray",
+		color: COLORS.lightOlive,
+		border: "1px solid dimgray",
+	},
+});
+
+export const CancelButton = styled(Button)({
+	textTransform: "none",
+	color: COLORS.lightOlive,
+	border: "1px solid dimgray",
+	fontSize: "20px",
+	backgroundColor: COLORS.scarlet,
+	padding: "1px 8px",
+	"&:hover": {
+		backgroundColor: "gray",
+		color: COLORS.scarlet,
+		border: "1px solid dimgray",
+	},
 });

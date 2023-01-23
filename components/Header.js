@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HeaderLinkStyled, HeaderNameStyled, HeaderStyled } from '../styles/MuiStyles';
+import DialogForm from "./DialogForm"
 
 const Header = () => {
 	return (
@@ -15,7 +16,8 @@ const Header = () => {
 			</div>
 
 			<div className="d-flex align-items-center mx-3">
-				<HeaderLinkStyled href="/contacts" className="me-3">Contacts</HeaderLinkStyled>
+				<DialogForm className="me-2"/>
+				<HeaderLinkStyled href="/contacts" className="mx-3">Contacts</HeaderLinkStyled>
 				<HeaderLinkStyled href="/signin">Sign in</HeaderLinkStyled>
 			</div>
 		</HeaderStyled>

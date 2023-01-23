@@ -1,8 +1,6 @@
 import Image from "next/image";
 import img from "../public/estate.png";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import SearchIcon from "@mui/icons-material/Search";
 import { SearchIconStyled, TextFieldStyled } from "../styles/MuiStyles";
 
 const Home = () => {
@@ -10,9 +8,6 @@ const Home = () => {
 		<div className="d-flex flex-column text-align-center">
 			<Box
 				component="form"
-				// sx={{
-				// 	"& > :not(style)": { m: 1, width: "450px" },
-				// }}
 				noValidate
 				autoComplete="off"
 				className="d-flex flex-column align-items-center mt-2 position-relative"

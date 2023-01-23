@@ -33,8 +33,15 @@ export const myTheme = createTheme({
                 notchedOutline: {
                     color: COLORS.scarlet, 
                     // borderColor: "dimgray",   
+                },   
+            }
+        },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: COLORS.lightOlive, 
+                    color: "black",   
                 },
-                
             }
         },
     }
