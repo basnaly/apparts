@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { TextFieldStyled } from "../styles/MuiStyles";
+import { DataContext } from "./DataContext";
 
 const DetailsForm = () => {
-	
-	const [yearBuild, setYearBuild] = useState("");
-	const [heating, setHeating] = useState("");
-	const [cooling, setCooling] = useState("");
-	const [parking, setParking] = useState("");
 
-	// const pricePerUnit = price / area
+	const {
+		yearBuild, setYearBuild, heating, setHeating, 
+		cooling, setCooling, parking, setParking,
+		price, area, unit, currency
+	} = useContext(DataContext)
+
+	const pricePerUnit = (price / area).toFixed(2)
 
 	return (
 		<Box
-			className="d-flex flex-column overflow-auto"
+			className="d-flex flex-column overflow-auto mt-4"
 			component="form"
 			sx={{
 				"& > :not(style)": { m: 1, width: "50ch" },
@@ -22,7 +24,7 @@ const DetailsForm = () => {
 			noValidate
 			autoComplete="off"
 		>
-			<TextFieldStyled
+			<TextField
 				className="me-4"
 				color="dimgray"
 				size="small"
@@ -71,7 +73,11 @@ const DetailsForm = () => {
 			/>
 
 			<div>
-				Price per 1 "unit"
+				{
+					price && area ? 
+					`Price per 1 ${ unit } is ${currency} ${pricePerUnit}`
+					: "Fill the price and/or area first"
+				}
 			</div>
 		</Box>
 	);

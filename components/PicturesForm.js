@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import { TextFieldStyled } from "../styles/MuiStyles";
+import { DataContext } from "./DataContext";
 
 const PicturesForm = () => {
 
-	const [picture, setPicture] = useState("");
+	const { picture, setPicture } = useContext(DataContext)
 
 	return (
 		<Box

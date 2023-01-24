@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { CURRENCIES, ESTATE_TYPES, UNITS } from "../utils/constants";
 import { MenuItem } from "@mui/material";
 import { ContactButton } from "../styles/MuiStyles";
+import { DataContext } from "./DataContext";
 
 const InfoForm = () => {
 
-	const [currency, setCurrency] = useState("$");
-	const [unit, setUnit] = useState("sqm");
-	const [price, setPrice] = useState(0);
-	const [bedrooms, setBedrooms] = useState(1);
-	const [bathrooms, setBathrooms] = useState(1);
-	const [area, setArea] = useState(0);
-	const [address, setAddress] = useState("");
-	const [estateType, setEstateType] = useState("Appartment");
-
+	const { 
+		currency, setCurrency, unit, setUnit, price, setPrice,
+		bedrooms, setBedrooms, bathrooms ,setBathrooms, area, setArea,
+		address, setAddress, estateType, setEstateType 
+	} = useContext(DataContext)
+ 
 	return (
 		<Box
 			className="d-flex flex-column"

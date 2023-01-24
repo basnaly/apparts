@@ -9,13 +9,32 @@ import PicturesForm from "./PicturesForm";
 import DetailsForm from "./DetailsForm";
 import { CancelButton, FormButton, SaveButton } from "../styles/MuiStyles";
 import { DialogActions } from "@mui/material";
+import { DataProvider } from "./DataContext";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const dialogForm = () => {
+const DialogForm = () => {
+
+	const [currency, setCurrency] = useState("$");
+	const [unit, setUnit] = useState("sqm");
+	const [price, setPrice] = useState(0);
+	const [bedrooms, setBedrooms] = useState(1);
+	const [bathrooms, setBathrooms] = useState(1);
+	const [area, setArea] = useState(0);
+	const [address, setAddress] = useState("");
+	const [estateType, setEstateType] = useState("Appartment");
+
+	const [yearBuild, setYearBuild] = useState(2000);
+	const [heating, setHeating] = useState("");
+	const [cooling, setCooling] = useState("");
+	const [parking, setParking] = useState("");
+
+	const [picture, setPicture] = useState("");
+
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [status, setStatus] = useState("")
 
 	const openDialog = () => {
 		setIsDialogOpen(true);
@@ -29,14 +48,52 @@ const dialogForm = () => {
 		openDialog();
 	};
 
+	const saveEstate = async () => {
+		const response = await fetch('/api/appart-data', {
+			method: "POST",
+			body: JSON.stringify({ newEstate: {
+				currency,
+				unit,
+				price,
+				bedrooms,
+				bathrooms,
+				area,
+				address,
+				estateType,
+				yearBuild,
+				heating,
+				cooling,
+				parking,
+			}}),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+		// const data = await response.json()
+
+		if (response.ok) {
+			setStatus("The estate was created")
+		} else {
+			setStatus("Failed to create the estate")
+		}
+
+		setTimeout (() => setIsDialogOpen(false), 3000)
+	}
+
 	return (
-		<React.Fragment>
+		<DataProvider value={{
+			currency, setCurrency, unit, setUnit, price, setPrice,
+			bedrooms, setBedrooms, bathrooms, setBathrooms, area, setArea,
+			address, setAddress, estateType, setEstateType,
+			yearBuild, setYearBuild, heating, setHeating, cooling, setCooling,
+			parking, setParking, picture, setPicture
+		}}>
 			<FormButton
 				variant={"outlined"}
 				className="mx-2"
 				onClick={openOrderItems}
 			>
-				Add estate
+				Add estate 
 			</FormButton>
 
 			<Dialog
@@ -54,12 +111,12 @@ const dialogForm = () => {
 					component="h2"
 					className="pb-1 m-1"
 				>
-					Apparts
+					Apparts {status}
 				</DialogTitle>
 
 				<hr className="mx-2 my-0" />
 
-				<DialogContent className="d-flex flex overflow-auto">
+				<DialogContent className="d-flex flex-column overflow-auto flex-lg-row">
 					<div className="d-flex flex-column overflow-auto">
 						<InfoForm />
                         <DetailsForm />	
@@ -70,16 +127,15 @@ const dialogForm = () => {
 
                 <DialogActions className="d-flex align-items-center justify-content-center mb-3">
 					<SaveButton
-						// onClick={saveFilter}
+						onClick={saveEstate}
 						variant={"outlined"}
 						className=" mx-3"
-						// disabled={!property || detail === ""}
 					>
 						Save
 					</SaveButton>
 
 					<CancelButton
-						// onClick={closeDialog}
+						onClick={closeDialog}
 						variant={"outlined"}
 						className=" mx-3"
 					>
@@ -88,8 +144,8 @@ const dialogForm = () => {
 				</DialogActions>
 			
 			</Dialog>
-		</React.Fragment>
+		</DataProvider>
 	);
 };
 
-export default dialogForm;
+export default DialogForm;
