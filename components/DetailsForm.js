@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { TextFieldStyled } from "../styles/MuiStyles";
 import { DataContext } from "./DataContext";
 
 const DetailsForm = () => {

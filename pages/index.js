@@ -1,7 +1,7 @@
 import Image from "next/image";
 import img from "../public/estate.png";
 import Box from "@mui/material/Box";
-import { SearchIconStyled, TextFieldStyled } from "../styles/MuiStyles";
+import { SearchIconStyled, TextFieldStyled } from "../styles/StyledComponents";
 
 const Home = () => {
 	return (

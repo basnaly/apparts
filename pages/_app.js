@@ -1,7 +1,7 @@
 import Head from "next/head";
 import "bootstrap/dist/css/bootstrap.css";
 import Header from "../components/Header";
-import { BodyStyled, MainStyled } from "../styles/MuiStyles";
+import { BodyStyled, MainStyled } from "../styles/StyledComponents";
 import { myTheme } from "../styles/MuiTheme";
 import { ThemeProvider } from "@mui/material/styles";
 import "../styles/globals.css"

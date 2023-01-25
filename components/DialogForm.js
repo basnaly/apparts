@@ -5,11 +5,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 
 import InfoForm from "./InfoForm";
-import PicturesForm from "./PicturesForm";
 import DetailsForm from "./DetailsForm";
-import { CancelButton, FormButton, SaveButton } from "../styles/MuiStyles";
+import { CancelButton, FormButton, SaveButton } from "../styles/StyledComponents";
 import { DialogActions } from "@mui/material";
 import { DataProvider } from "./DataContext";
+import DynamicInputImage from "./DynamicInputImage";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
@@ -31,7 +31,7 @@ const DialogForm = () => {
 	const [cooling, setCooling] = useState("");
 	const [parking, setParking] = useState("");
 
-	const [picture, setPicture] = useState("");
+	const [images, setImages] = useState([]);
 
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [status, setStatus] = useState("")
@@ -86,7 +86,7 @@ const DialogForm = () => {
 			bedrooms, setBedrooms, bathrooms, setBathrooms, area, setArea,
 			address, setAddress, estateType, setEstateType,
 			yearBuild, setYearBuild, heating, setHeating, cooling, setCooling,
-			parking, setParking, picture, setPicture
+			parking, setParking, images, setImages
 		}}>
 			<FormButton
 				variant={"outlined"}
@@ -122,7 +122,7 @@ const DialogForm = () => {
                         <DetailsForm />	
 					</div>
 
-					<PicturesForm />
+					<DynamicInputImage />
 				</DialogContent>
 
                 <DialogActions className="d-flex align-items-center justify-content-center mb-3">

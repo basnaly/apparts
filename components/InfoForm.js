@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { CURRENCIES, ESTATE_TYPES, UNITS } from "../utils/constants";
 import { MenuItem } from "@mui/material";
-import { ContactButton } from "../styles/MuiStyles";
+import { ContactButton } from "../styles/StyledComponents";
 import { DataContext } from "./DataContext";
 
 const InfoForm = () => {
@@ -36,9 +36,9 @@ const InfoForm = () => {
                     value={currency}
 					onChange={(e) => setCurrency(e.target.value)}
 				>
-					{CURRENCIES.map((option) => (
-						<MenuItem key={option.value} value={option.value}>
-							{option.label}
+					{CURRENCIES.map((el) => (
+						<MenuItem key={el} value={el}>
+							{el}
 						</MenuItem>
 					))}
 				</TextField>

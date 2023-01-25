@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HeaderLinkStyled, HeaderNameStyled, HeaderStyled } from '../styles/MuiStyles';
+import { HeaderLinkStyled, HeaderNameStyled, HeaderStyled } from '../styles/StyledComponents';
 import DialogForm from "./DialogForm"
 
 const Header = () => {
