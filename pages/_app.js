@@ -13,12 +13,12 @@ export default function App({ Component, pageProps }) {
 				<title>Apparts</title>
 				<meta
 					name="viewport"
-					content="width=device-width, initial-scale=1.0"
+					content="estate app, width=device-width, initial-scale=1.0"
 				/>
 			</Head>
-			<MainStyled>
+			<MainStyled className="d-flex flex-column overflow-auto">
 				<Header />
-				<BodyStyled>
+				<BodyStyled className="d-flex overflow-auto">
 					<Component {...pageProps} />
 				</BodyStyled>
 			</MainStyled>

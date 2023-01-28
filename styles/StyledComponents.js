@@ -111,3 +111,16 @@ export const AddIconStyled = styled(AddIcon)`
 	cursor: ${props => props.disabled ? 'not-allowed': 'pointer'};
 	color: ${props => props.disabled ? 'gray' : COLORS.scarlet};
 `
+
+export const EstatePriceStyled = styled.div`
+	font-size: 26px;
+	font-weight: bold;
+`
+
+export const AddressStyled = styled.div`
+	font-size: 16px;
+`
+export const EstateSpanStyled = styled.span`
+	font-weight: bold;
+	margin: 0 5px;
+`

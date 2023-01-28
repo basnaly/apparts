@@ -64,6 +64,7 @@ const DialogForm = () => {
 				heating,
 				cooling,
 				parking,
+				images,
 			}}),
 			headers: {
 				"Content-Type": "application/json"
