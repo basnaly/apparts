@@ -6,6 +6,8 @@ export const COLORS = {
 
 export const ESTATE_TYPES = ["Home", "Cottage", "Appartment"];
 
+export const ESTATE_ACTION = ["Sell", "Rent", "Buy"]
+
 export const CURRENCIES = [ "$", "€"];
 
 export const UNITS = ["sqm", "sqft"]

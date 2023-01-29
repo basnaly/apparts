@@ -7,6 +7,10 @@ export const myTheme = createTheme({
 			main: "dimgrey",
 			contrastText: "#fff",
 		},
+		scarlet: {
+			main: COLORS.scarlet,
+			contrastText: COLORS.lightOlive,
+		}
 	},
 	components: {
 		MuiInputLabel: {

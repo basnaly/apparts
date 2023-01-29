@@ -3,9 +3,9 @@ import SearchInput from "@/components/SearchInput";
 import { getEstateListByAction } from "@/lib/sqldb";
 import { useState } from "react";
 
-const Rent = ({ data }) => {
-    
-    const [filteredEstates, setFilteredEstates] = useState([]);
+const Sell = ({ data }) => {
+
+	const [filteredEstates, setFilteredEstates] = useState([]);
 
 	const findFilteredEstates = (e) => {
 		const filteredData = data.filter((el) =>
@@ -15,7 +15,7 @@ const Rent = ({ data }) => {
 		console.log(filteredData);
 	};
 
-    return (
+	return (
 		<div className="d-flex flex-column text-align-center w-100">
 
 			<SearchInput findFilteredEstates={findFilteredEstates} /> 
@@ -29,13 +29,13 @@ const Rent = ({ data }) => {
 			</div>
 		</div>
 	);
-}
+};
 
-export default Rent
+export default Sell;
 
 export const getStaticProps = async () => {
     
-	const estateListByAction = await getEstateListByAction("Rent");
+	const estateListByAction = await getEstateListByAction("Sell");
 
 	return {
 		props: {

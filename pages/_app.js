@@ -13,7 +13,11 @@ export default function App({ Component, pageProps }) {
 				<title>Apparts</title>
 				<meta
 					name="viewport"
-					content="estate app, width=device-width, initial-scale=1.0"
+					content="width=device-width, initial-scale=1.0"
+				/>
+				<meta
+					name="description"
+					content="sell rent buy estate application"
 				/>
 			</Head>
 			<MainStyled className="d-flex flex-column overflow-auto">

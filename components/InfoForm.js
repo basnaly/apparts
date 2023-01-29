@@ -1,19 +1,38 @@
 import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { CURRENCIES, ESTATE_TYPES, UNITS } from "../utils/constants";
+import {
+	CURRENCIES,
+	ESTATE_ACTION,
+	ESTATE_TYPES,
+	UNITS,
+} from "../utils/constants";
 import { MenuItem } from "@mui/material";
 import { ContactButton } from "../styles/StyledComponents";
 import { DataContext } from "./DataContext";
 
 const InfoForm = () => {
+	const {
+		currency,
+		setCurrency,
+		unit,
+		setUnit,
+		price,
+		setPrice,
+		bedrooms,
+		setBedrooms,
+		bathrooms,
+		setBathrooms,
+		area,
+		setArea,
+		address,
+		setAddress,
+		estateType,
+		setEstateType,
+		estateAction,
+		setEstateAction,
+	} = useContext(DataContext);
 
-	const { 
-		currency, setCurrency, unit, setUnit, price, setPrice,
-		bedrooms, setBedrooms, bathrooms ,setBathrooms, area, setArea,
-		address, setAddress, estateType, setEstateType 
-	} = useContext(DataContext)
- 
 	return (
 		<Box
 			className="d-flex flex-column"
@@ -29,11 +48,11 @@ const InfoForm = () => {
 					className="me-4"
 					id="outlined-currency"
 					sx={{ width: "100px" }}
-                    color="dimgray"
-				    size="small"
+					color="dimgray"
+					size="small"
 					select
 					label="Currency"
-                    value={currency}
+					value={currency}
 					onChange={(e) => setCurrency(e.target.value)}
 				>
 					{CURRENCIES.map((el) => (
@@ -46,8 +65,8 @@ const InfoForm = () => {
 				<TextField
 					className="me-4"
 					sx={{ width: "150px" }}
-                    color="dimgray"
-				    size="small"
+					color="dimgray"
+					size="small"
 					id="outlined-price"
 					label="Price"
 					variant="outlined"
@@ -58,8 +77,8 @@ const InfoForm = () => {
 				<TextField
 					className="me-4"
 					sx={{ width: "150px" }}
-                    color="dimgray"
-				    size="small"
+					color="dimgray"
+					size="small"
 					id="outlined-area"
 					label="Area"
 					variant="outlined"
@@ -67,14 +86,14 @@ const InfoForm = () => {
 					onChange={(e) => setArea(e.target.value)}
 				/>
 
-                <TextField
+				<TextField
 					className="me-4"
 					id="outlined-unit"
 					sx={{ width: "100px" }}
-                    color="dimgray"
-				    size="small"
+					color="dimgray"
+					size="small"
 					select
-                    value={unit}
+					value={unit}
 					label="Unit"
 					onChange={(e) => setUnit(e.target.value)}
 				>
@@ -90,8 +109,8 @@ const InfoForm = () => {
 				<TextField
 					className="me-4"
 					sx={{ width: "100px" }}
-                    color="dimgray"
-				    size="small"
+					color="dimgray"
+					size="small"
 					id="outlined-bedrooms"
 					label="Bedrooms"
 					variant="outlined"
@@ -102,23 +121,23 @@ const InfoForm = () => {
 					className="me-4"
 					sx={{ width: "100px" }}
 					id="outlined-bathrooms"
-                    color="dimgray"
-				    size="small"
+					color="dimgray"
+					size="small"
 					label="Bathrooms"
 					variant="outlined"
 					value={bathrooms}
 					onChange={(e) => setBathrooms(e.target.value)}
 				/>
 				<TextField
-                    inputProps={{"data-lpignore": "true"}}
+					inputProps={{ "data-lpignore": "true" }}
 					id="outlined-estateType"
 					sx={{ width: "200px" }}
-                    color="dimgray"
-				    size="small"
+					color="dimgray"
+					size="small"
 					select
 					label="Estate type"
-                    type="text"
-                    value={estateType}
+					type="text"
+					value={estateType}
 					onChange={(e) => setEstateType(e.target.value)}
 				>
 					{ESTATE_TYPES.map((option) => (
@@ -131,25 +150,44 @@ const InfoForm = () => {
 
 			<div className="d-flex">
 				<TextField
+					className="me-4"
 					id="outlined-address"
-                    sx={{ width: "300px" }}
-                    color="dimgray"
-				    size="small"
+					sx={{ width: "300px" }}
+					color="dimgray"
+					size="small"
 					label="Address"
 					variant="outlined"
 					value={address}
 					onChange={(e) => setAddress(e.target.value)}
 				/>
+
+				<TextField
+					inputProps={{ "data-lpignore": "true" }}
+					id="outlined-estateAction"
+					sx={{ width: "150px" }}
+					color="dimgray"
+					size="small"
+					select
+					label="Estate action"
+					type="text"
+					value={estateAction}
+					onChange={(e) => setEstateAction(e.target.value)}
+				>
+					{ESTATE_ACTION.map((option) => (
+						<MenuItem key={option} value={option}>
+							{option}
+						</MenuItem>
+					))}
+				</TextField>
 			</div>
 
-            <div className="d-flex justify-content-center">
-                <ContactButton variant={"outlined"} >
-                    Contact agent
-                </ContactButton>
-            </div>
+			<div className="d-flex justify-content-center">
+				<ContactButton variant={"outlined"}>
+					Contact agent
+				</ContactButton>
+			</div>
 
-            <hr />
-            
+			<hr />
 		</Box>
 	);
 };

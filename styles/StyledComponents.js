@@ -20,11 +20,6 @@ export const HeaderStyled = styled.div`
 	padding: 5px;
 `
 
-export const HeaderNameStyled = styled.div`
-	color: ${COLORS.lightTeal};
-    font-size: 30px;
-`
-
 export const HeaderLinkStyled = styled(Link)`
 	color: ${COLORS.lightOlive};
 	white-space: nowrap;
@@ -33,6 +28,14 @@ export const HeaderLinkStyled = styled(Link)`
 	}
 	&.active {
 		border-bottom: 2px solid chartreuse;		
+	}
+`
+export const LinkNameStyled = styled(Link)`
+	text-decoration: none;
+	color: ${COLORS.lightTeal};
+    font-size: 30px;
+	&:hover {
+		color: ${COLORS.lightOlive};
 	}
 `
 

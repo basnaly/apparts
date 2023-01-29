@@ -18,7 +18,7 @@ const ImageForm = ({ value, onChange }) => {
 					size="small"
 					//sx={{ width: "150px" }}
 					id="outlined-picture"
-					label="Add picture"
+					label="Add image"
 					variant="outlined"
 					value={value}
 					onChange={onChange}

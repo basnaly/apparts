@@ -25,6 +25,7 @@ const DialogForm = () => {
 	const [area, setArea] = useState(0);
 	const [address, setAddress] = useState("");
 	const [estateType, setEstateType] = useState("Appartment");
+	const [estateAction, setEstateAction] = useState("Sell")
 
 	const [yearBuild, setYearBuild] = useState(2000);
 	const [heating, setHeating] = useState("");
@@ -60,6 +61,7 @@ const DialogForm = () => {
 				area,
 				address,
 				estateType,
+				estateAction,
 				yearBuild,
 				heating,
 				cooling,
@@ -85,7 +87,7 @@ const DialogForm = () => {
 		<DataProvider value={{
 			currency, setCurrency, unit, setUnit, price, setPrice,
 			bedrooms, setBedrooms, bathrooms, setBathrooms, area, setArea,
-			address, setAddress, estateType, setEstateType,
+			address, setAddress, estateType, setEstateType, estateAction, setEstateAction,
 			yearBuild, setYearBuild, heating, setHeating, cooling, setCooling,
 			parking, setParking, images, setImages
 		}}>

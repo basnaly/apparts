@@ -1,6 +1,12 @@
 import React from "react";
-import Image from "next/image"
-import { AddressStyled, EstateListStyled, EstatePriceStyled, EstateSpanStyled } from "../styles/StyledComponents";
+import Image from "next/image";
+import {
+	AddressStyled,
+	EstateListStyled,
+	EstatePriceStyled,
+	EstateSpanStyled,
+} from "../styles/StyledComponents";
+import { Chip } from "@mui/material";
 
 const EstateComponent = ({ el }) => {
 
@@ -9,10 +15,15 @@ const EstateComponent = ({ el }) => {
 			key={el.id}
 			className="d-flex flex-column align-items-center m-3 p-3"
 		>
-			<EstatePriceStyled className="d-flex">
-				{el.currency} {el.price.toLocaleString("en-US")}
-			</EstatePriceStyled>
-
+			<div className="d-flex w-100 justify-content-around">
+				<EstatePriceStyled className="d-flex">
+					{el.currency} {el.price.toLocaleString("en-US")}
+				</EstatePriceStyled>
+				<Chip label={el.estateaction} 
+					color="scarlet" 
+					sx={{fontWeight: "bold"}} 
+				/>
+			</div>
 			<div className="d-flex">
 				<EstateSpanStyled>{el.bedrooms}</EstateSpanStyled> bds
 				<EstateSpanStyled>{el.bathrooms}</EstateSpanStyled> bs
