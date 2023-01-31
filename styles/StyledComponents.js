@@ -127,3 +127,22 @@ export const EstateSpanStyled = styled.span`
 	font-weight: bold;
 	margin: 0 5px;
 `
+
+export const ContactTitleStyled = styled.div`
+    font-size: 28px;
+`
+
+export const BrunchTitleStyled = styled.div`
+    font-size: 22px;
+	font-weight: bold;
+`
+
+export const BranchDataStyled = styled(Link)`
+	text-decoration: none;
+	color: black;
+    font-size: 20px;
+	text-decoration: underline;
+	&:hover {
+		color: ${COLORS.scarlet};
+	}
+`

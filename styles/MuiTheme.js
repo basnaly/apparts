@@ -10,6 +10,10 @@ export const myTheme = createTheme({
 		scarlet: {
 			main: COLORS.scarlet,
 			contrastText: COLORS.lightOlive,
+		},
+		white: {
+			main: "white",
+			contrastText: "gray"
 		}
 	},
 	components: {
