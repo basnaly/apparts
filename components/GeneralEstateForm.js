@@ -8,10 +8,10 @@ import {
 	UNITS,
 } from "../utils/constants";
 import { MenuItem } from "@mui/material";
-import { ContactButton } from "../styles/StyledComponents";
-import { DataContext } from "./DataContext";
+import { DataEstateContext } from "./DataEstateContext";
 
-const InfoForm = () => {
+const GeneralEstateForm = () => {
+	
 	const {
 		currency,
 		setCurrency,
@@ -31,7 +31,7 @@ const InfoForm = () => {
 		setEstateType,
 		estateAction,
 		setEstateAction,
-	} = useContext(DataContext);
+	} = useContext(DataEstateContext);
 
 	return (
 		<Box
@@ -43,7 +43,7 @@ const InfoForm = () => {
 			noValidate
 			autoComplete="off"
 		>
-			<div className="d-flex">
+			<div className="d-flex align-items-center justify-content-center mb-3">
 				<TextField
 					className="me-4"
 					id="outlined-currency"
@@ -105,7 +105,7 @@ const InfoForm = () => {
 				</TextField>
 			</div>
 
-			<div className="d-flex">
+			<div className="d-flex align-items-center justify-content-center mb-3">
 				<TextField
 					className="me-4"
 					sx={{ width: "100px" }}
@@ -128,6 +128,7 @@ const InfoForm = () => {
 					value={bathrooms}
 					onChange={(e) => setBathrooms(e.target.value)}
 				/>
+
 				<TextField
 					inputProps={{ "data-lpignore": "true" }}
 					id="outlined-estateType"
@@ -148,7 +149,7 @@ const InfoForm = () => {
 				</TextField>
 			</div>
 
-			<div className="d-flex">
+			<div className="d-flex align-items-center justify-content-center">
 				<TextField
 					className="me-4"
 					id="outlined-address"
@@ -181,15 +182,8 @@ const InfoForm = () => {
 				</TextField>
 			</div>
 
-			<div className="d-flex justify-content-center">
-				<ContactButton variant={"outlined"}>
-					Contact agent
-				</ContactButton>
-			</div>
-
-			<hr />
 		</Box>
 	);
 };
 
-export default InfoForm;
+export default GeneralEstateForm;

@@ -4,11 +4,16 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 
-import InfoForm from "./InfoForm";
-import DetailsForm from "./DetailsForm";
-import { CancelButton, FormButton, SaveButton } from "../styles/StyledComponents";
+import GeneralEstateForm from "./GeneralEstateForm";
+import DetailEstateForm from "./DetailEstateForm";
+import {
+	CancelButton,
+	ContactButton,
+	FormButton,
+	SaveButton,
+} from "../styles/StyledComponents";
 import { DialogActions } from "@mui/material";
-import { DataProvider } from "./DataContext";
+import { DataEstateProvider } from "./DataEstateContext";
 import DynamicInputImage from "./DynamicInputImage";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -16,7 +21,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const DialogForm = () => {
-
 	const [currency, setCurrency] = useState("$");
 	const [unit, setUnit] = useState("sqm");
 	const [price, setPrice] = useState(0);
@@ -25,7 +29,7 @@ const DialogForm = () => {
 	const [area, setArea] = useState(0);
 	const [address, setAddress] = useState("");
 	const [estateType, setEstateType] = useState("Appartment");
-	const [estateAction, setEstateAction] = useState("Sell")
+	const [estateAction, setEstateAction] = useState("Sell");
 
 	const [yearBuild, setYearBuild] = useState(2000);
 	const [heating, setHeating] = useState("");
@@ -35,7 +39,7 @@ const DialogForm = () => {
 	const [images, setImages] = useState([]);
 
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
-	const [status, setStatus] = useState("")
+	const [status, setStatus] = useState("");
 
 	const openDialog = () => {
 		setIsDialogOpen(true);
@@ -50,53 +54,80 @@ const DialogForm = () => {
 	};
 
 	const saveEstate = async () => {
-		const response = await fetch('/api/appart-data', {
+		const response = await fetch("/api/appart-data", {
 			method: "POST",
-			body: JSON.stringify({ newEstate: {
-				currency,
-				unit,
-				price,
-				bedrooms,
-				bathrooms,
-				area,
-				address,
-				estateType,
-				estateAction,
-				yearBuild,
-				heating,
-				cooling,
-				parking,
-				images,
-			}}),
+			body: JSON.stringify({
+				newEstate: {
+					currency,
+					unit,
+					price,
+					bedrooms,
+					bathrooms,
+					area,
+					address,
+					estateType,
+					estateAction,
+					yearBuild,
+					heating,
+					cooling,
+					parking,
+					images,
+				},
+			}),
 			headers: {
-				"Content-Type": "application/json"
-			}
-		})
+				"Content-Type": "application/json",
+			},
+		});
 		// const data = await response.json()
 
 		if (response.ok) {
-			setStatus("The estate was created")
+			setStatus("The estate was created");
 		} else {
-			setStatus("Failed to create the estate")
+			setStatus("Failed to create the estate");
 		}
 
-		setTimeout (() => setIsDialogOpen(false), 3000)
-	}
+		setTimeout(() => setIsDialogOpen(false), 3000);
+	};
 
 	return (
-		<DataProvider value={{
-			currency, setCurrency, unit, setUnit, price, setPrice,
-			bedrooms, setBedrooms, bathrooms, setBathrooms, area, setArea,
-			address, setAddress, estateType, setEstateType, estateAction, setEstateAction,
-			yearBuild, setYearBuild, heating, setHeating, cooling, setCooling,
-			parking, setParking, images, setImages
-		}}>
+		<DataEstateProvider
+			value={{
+				currency,
+				setCurrency,
+				unit,
+				setUnit,
+				price,
+				setPrice,
+				bedrooms,
+				setBedrooms,
+				bathrooms,
+				setBathrooms,
+				area,
+				setArea,
+				address,
+				setAddress,
+				estateType,
+				setEstateType,
+				estateAction,
+				setEstateAction,
+				yearBuild,
+				setYearBuild,
+				heating,
+				setHeating,
+				cooling,
+				setCooling,
+				parking,
+				setParking,
+				images,
+				setImages,
+			}}
+		>
 			<FormButton
 				variant={"outlined"}
 				className="mx-2"
 				onClick={openOrderItems}
 			>
-				Add estate 
+				Add estate
 			</FormButton>
 
 			<Dialog
@@ -108,27 +139,33 @@ const DialogForm = () => {
 				aria-describedby="alert-dialog-description"
 				maxWidth="lg"
 			>
-				<DialogTitle
-					id="modal-modal-title"
-					variant="h6"
-					component="h2"
-					className="pb-1 m-1"
-				>
-					Apparts {status}
-				</DialogTitle>
+				<div className="d-flex align-items-center justify-content-between">
+					<DialogTitle
+						id="modal-modal-title"
+						variant="h6"
+						component="h2"
+						className="m-0"
+					>
+						🏠 Apparts {status}
+					</DialogTitle>
+
+					<ContactButton className="me-4" variant={"outlined"}>
+						Contact agent
+					</ContactButton>
+				</div>
 
 				<hr className="mx-2 my-0" />
 
 				<DialogContent className="d-flex flex-column overflow-auto flex-lg-row">
-					<div className="d-flex flex-column overflow-auto">
-						<InfoForm />
-                        <DetailsForm />	
+					<div className="d-flex flex-column">
+						<GeneralEstateForm />
+						<DetailEstateForm />
 					</div>
 
 					<DynamicInputImage />
 				</DialogContent>
 
-                <DialogActions className="d-flex align-items-center justify-content-center mb-3">
+				<DialogActions className="d-flex align-items-center justify-content-center mb-3">
 					<SaveButton
 						onClick={saveEstate}
 						variant={"outlined"}
@@ -145,9 +182,8 @@ const DialogForm = () => {
 						Cancel
 					</CancelButton>
 				</DialogActions>
-			
 			</Dialog>
-		</DataProvider>
+		</DataEstateProvider>
 	);
 };
 

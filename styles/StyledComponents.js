@@ -4,6 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import Link from "next/link";
 import { COLORS } from "../utils/constants";
 import SearchIcon from '@mui/icons-material/Search';
+import CardHeader from '@mui/material/CardHeader';
 
 export const MainStyled = styled.div`
 	height: 100vh;
@@ -67,9 +68,9 @@ export const ContactButton = styled(Button)`
 	text-transform: none;
 	color: ${COLORS.scarlet};
 	border: 1px solid dimgray;
-	font-size: 20px;
+	font-size: 18px;
 	background-color: ${COLORS.lightTeal};
-	padding: 1px 8px;
+	padding: 1px 6px;
 	&:hover {
 		background-color: gray;
 		color: ${COLORS.lightOlive};
@@ -145,4 +146,12 @@ export const BranchDataStyled = styled(Link)`
 	&:hover {
 		color: ${COLORS.scarlet};
 	}
+`
+
+export const TitleBuyStyled = styled.div`
+    font-size: 1rem;
+`
+
+export const CardHeaderStyled = styled(CardHeader)`
+    font-size: 20px;
 `
