@@ -41,7 +41,35 @@ const Buy = () => {
 	const [parkingMin, setParkingMin] = useState(1);
 	const [parkingMax, setParkingMax] = useState(3);
 
-	const [addRequest, setAddRequest] = useState([""]);
+	const [addRequest, setAddRequest] = useState([]);
+
+	const saveBuyForm = () => {
+
+	}
+
+	const clearData = () => {
+		setCurrency("$");
+		setPriceMin(0);
+		setPriceMax(0);
+		setUnit("sqm");
+		setAreaMin(0);
+		setAreaMax(0);
+		setBedroomsMin(2);
+		setBedroomsMax(4);
+		setBathroomsMin(1);
+		setBathroomsMax(2);
+		setIsHome(false);
+		setIsCottage(false);
+		setIsAppartment(true);
+		setPreferAreaEstate("");
+		setYearBuildMin(1990);
+		setYearBuildMax(2010);
+		setFloorMin(1);
+		setFloorMax(4);
+		setParkingMin(1);
+		setParkingMax(3);
+		setAddRequest([]);
+	};
 
 	return (
 		<DataBuyProvider
@@ -72,10 +100,6 @@ const Buy = () => {
 				setIsCottage,
 				isAppartment,
 				setIsAppartment,
-				bathroomsMin,
-				setBathroomsMin,
-				bathroomsMax,
-				setBathroomsMax,
 				preferAreaEstate,
 				setPreferAreaEstate,
 				yearBuildMin,
@@ -118,15 +142,20 @@ const Buy = () => {
 
 					<CardActions className="d-flex align-items-center justify-content-center mb-3">
 						<SaveButton
-							// onClick={saveEstate}
+							onClick={saveBuyForm}
 							variant={"outlined"}
 							className=" mx-3"
+							disabled={priceMin > priceMax || areaMin > areaMax 
+								|| bedroomsMin > bedroomsMax || bathroomsMin > bathroomsMax
+								|| yearBuildMin > yearBuildMax || floorMin > floorMax
+								|| parkingMin > parkingMax
+							} 
 						>
 							Save
 						</SaveButton>
 
 						<CancelButton
-							// onClick={closeDialog}
+							onClick={clearData}
 							variant={"outlined"}
 							className=" mx-3"
 						>

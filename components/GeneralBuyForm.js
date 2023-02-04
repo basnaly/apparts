@@ -78,6 +78,11 @@ const GeneralBuyForm = () => {
 					id="outlined-price-min"
 					label="Price min"
 					variant="outlined"
+					type="number"
+					inputProps={{
+						max: priceMax
+					}}
+					error={ +priceMin > +priceMax }
 					value={priceMin}
 					onChange={(e) => setPriceMin(e.target.value)}
 				/>
@@ -89,6 +94,11 @@ const GeneralBuyForm = () => {
 					id="outlined-price-max"
 					label="Price max"
 					variant="outlined"
+					type="number"
+					inputProps={{
+						min: priceMin
+					}}
+					error={ +priceMax < +priceMin }
 					value={priceMax}
 					onChange={(e) => setPriceMax(e.target.value)}
 				/>
@@ -121,6 +131,11 @@ const GeneralBuyForm = () => {
 					id="outlined-areaMin"
 					label="Area min"
 					variant="outlined"
+					type="number"
+					inputProps={{
+						max: areaMax
+					}}
+					error={ +areaMax < +areaMin }
 					value={areaMin}
 					onChange={(e) => setAreaMin(e.target.value)}
 				/>
@@ -132,6 +147,10 @@ const GeneralBuyForm = () => {
 					id="outlined-areaMax"
 					label="Area max"
 					variant="outlined"
+					inputProps={{
+						min: areaMin
+					}}
+					error={ +areaMax < +areaMin }
 					value={areaMax}
 					onChange={(e) => setAreaMax(e.target.value)}
 				/>
@@ -146,6 +165,10 @@ const GeneralBuyForm = () => {
 					id="outlined-bedroomsMin"
 					label="Bedrooms min"
 					variant="outlined"
+					inputProps={{
+						max: bedroomsMax
+					}}
+					error={ +bedroomsMax < +bedroomsMin }
 					value={bedroomsMin}
 					onChange={(e) => setBedroomsMin(e.target.value)}
 				/>
@@ -158,6 +181,10 @@ const GeneralBuyForm = () => {
 					id="outlined-bedroomsMax"
 					label="Bedrooms max"
 					variant="outlined"
+					inputProps={{
+						min: bedroomsMin
+					}}
+					error={ +bedroomsMin > +bedroomsMax }
 					value={bedroomsMax}
 					onChange={(e) => setBedroomsMax(e.target.value)}
 				/>
@@ -170,6 +197,10 @@ const GeneralBuyForm = () => {
 					id="outlined-bathroomsMin"
 					label="Bathrooms min"
 					variant="outlined"
+					inputProps={{
+						max: bathroomsMax
+					}}
+					error={ +bathroomsMax < +bathroomsMin }
 					value={bathroomsMin}
 					onChange={(e) => setBathroomsMin(e.target.value)}
 				/>
@@ -181,6 +212,10 @@ const GeneralBuyForm = () => {
 					id="outlined-bathroomsMax"
 					label="Bathrooms max"
 					variant="outlined"
+					inputProps={{
+						min: bathroomsMin
+					}}
+					error={ +bathroomsMin > +bathroomsMax }
 					value={bathroomsMax}
 					onChange={(e) => setBathroomsMax(e.target.value)}
 				/>

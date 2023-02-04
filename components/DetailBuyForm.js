@@ -57,6 +57,10 @@ const DetailBuyForm = () => {
 					id="outlined-year-build-min"
 					label="Min build year"
 					variant="outlined"
+					inputProps={{
+						max: yearBuildMax
+					}}
+					error={ +yearBuildMax < +yearBuildMin }
 					value={yearBuildMin}
 					onChange={(e) => setYearBuildMin(e.target.value)}
 				/>
@@ -69,6 +73,10 @@ const DetailBuyForm = () => {
 					id="outlined-year-build-max"
 					label="Max build year"
 					variant="outlined"
+					inputProps={{
+						min: yearBuildMin
+					}}
+					error={ +yearBuildMin > +yearBuildMax }
 					value={yearBuildMax}
 					onChange={(e) => setYearBuildMax(e.target.value)}
 				/>
@@ -83,6 +91,10 @@ const DetailBuyForm = () => {
 					id="outlined-floor-min"
 					label="Min floor"
 					variant="outlined"
+					inputProps={{
+						max: floorMax
+					}}
+					error={ +floorMax < +floorMin }
 					value={floorMin}
 					onChange={(e) => setFloorMin(e.target.value)}
 				/>
@@ -95,6 +107,10 @@ const DetailBuyForm = () => {
 					id="outlined-floor-max"
 					label="Max floor"
 					variant="outlined"
+					inputProps={{
+						min: floorMin
+					}}
+					error={ +floorMin > +floorMax }
 					value={floorMax}
 					onChange={(e) => setFloorMax(e.target.value)}
 				/>
@@ -109,6 +125,10 @@ const DetailBuyForm = () => {
 					id="outlined-parking-min"
 					label="Min parking"
 					variant="outlined"
+					inputProps={{
+						max: parkingMax
+					}}
+					error={ +parkingMax < +parkingMin }
 					value={parkingMin}
 					onChange={(e) => setParkingMin(e.target.value)}
 				/>
@@ -121,6 +141,10 @@ const DetailBuyForm = () => {
 					id="outlined-parking-max"
 					label="Max parking"
 					variant="outlined"
+					inputProps={{
+						min: parkingMin
+					}}
+					error={ +parkingMax < +parkingMin }
 					value={parkingMax}
 					onChange={(e) => setParkingMax(e.target.value)}
 				/>
