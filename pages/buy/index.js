@@ -1,5 +1,6 @@
 import { DataBuyProvider } from "@/components/DataBuyContext";
 import DetailBuyForm from "@/components/DetailBuyForm";
+import DialogContactAgent from "@/components/DialogContactAgent";
 import GeneralBuyForm from "@/components/GeneralBuyForm";
 import {
 	CancelButton,
@@ -23,12 +24,12 @@ const Buy = () => {
 	const [bedroomsMin, setBedroomsMin] = useState(2);
 	const [bedroomsMax, setBedroomsMax] = useState(4);
 
+	const [bathroomsMin, setBathroomsMin] = useState(1);
+	const [bathroomsMax, setBathroomsMax] = useState(2);
+
 	const [isHome, setIsHome] = useState(false);
 	const [isCottage, setIsCottage] = useState(false);
 	const [isAppartment, setIsAppartment] = useState(true);
-
-	const [bathroomsMin, setBathroomsMin] = useState(1);
-	const [bathroomsMax, setBathroomsMax] = useState(2);
 
 	const [preferAreaEstate, setPreferAreaEstate] = useState("");
 
@@ -43,7 +44,47 @@ const Buy = () => {
 
 	const [addRequest, setAddRequest] = useState([]);
 
-	const saveBuyForm = () => {
+	const [status, setStatus] = useState("");
+
+	const saveBuyForm = async () => {
+		const response = await fetch("/api/appart-buy", {
+			method: "POST",
+			body: JSON.stringify({
+				newBuyEstate: {
+					currency,
+					priceMin,
+					priceMax,
+					unit,
+					areaMin,
+					areaMax,
+					bedroomsMin,
+					bedroomsMax,
+					bathroomsMin,
+					bathroomsMax,
+					isHome,
+					isCottage,
+					isAppartment,
+					preferAreaEstate,
+					yearBuildMin,
+					yearBuildMax,
+					floorMin,
+					floorMax,
+					parkingMin,
+					parkingMax,
+					addRequest
+				},
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		// const data = await response.json()
+
+		if (response.ok) {
+			setStatus("The request was created");
+		} else {
+			setStatus("Failed to create the request");
+		}
 
 	}
 
@@ -129,9 +170,8 @@ const Buy = () => {
 							🏠 Apparts
 						</div>
 
-						<ContactButton className="me-4" variant={"outlined"}>
-							Contact agent
-						</ContactButton>
+						<DialogContactAgent />
+
 					</div>
 					<hr className="mx-2 my-0" />
 
@@ -145,10 +185,10 @@ const Buy = () => {
 							onClick={saveBuyForm}
 							variant={"outlined"}
 							className=" mx-3"
-							disabled={priceMin > priceMax || areaMin > areaMax 
-								|| bedroomsMin > bedroomsMax || bathroomsMin > bathroomsMax
-								|| yearBuildMin > yearBuildMax || floorMin > floorMax
-								|| parkingMin > parkingMax
+							disabled={ +priceMin > +priceMax || +areaMin > +areaMax 
+								|| +bedroomsMin > +bedroomsMax || +bathroomsMin > +bathroomsMax
+								|| +yearBuildMin > +yearBuildMax || +floorMin > +floorMax
+								|| +parkingMin > +parkingMax
 							} 
 						>
 							Save

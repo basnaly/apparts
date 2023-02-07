@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { signIn, signOut, useSession } from 'next-auth/react'
 import {
 	HeaderLinkStyled,
 	HeaderStyled,
@@ -7,6 +7,36 @@ import {
 import DialogForm from "./DialogForm";
 
 const Header = () => {
+
+	const { data: session, status } = useSession()
+	const loading = status === "loading"
+
+	let authUser = ""
+
+	if (!loading && !session) {
+		authUser = (
+			<HeaderLinkStyled href="/api/auth/signin"
+				onClick={e => {
+					e.preventDefault()
+					signIn('github')
+				}}
+			>
+				Sign in
+			</HeaderLinkStyled>
+		)
+	} else if (!loading && session) {
+		authUser = (
+			<HeaderLinkStyled href="/api/auth/signout"
+				onClick={e => {
+					e.preventDefault()
+					signOut()
+				}}
+			>
+				Sign out
+			</HeaderLinkStyled>
+		)
+	}
+
 	return (
 		<HeaderStyled className="d-flex align-items-center justify-content-between">
 			<div className="d-flex align-items-center mx-3">
@@ -32,7 +62,9 @@ const Header = () => {
 				<HeaderLinkStyled href="/contacts" className="mx-3">
 					Contacts
 				</HeaderLinkStyled>
-				<HeaderLinkStyled href="/signin">Sign in</HeaderLinkStyled>
+
+			{ authUser }
+
 			</div>
 		</HeaderStyled>
 	);

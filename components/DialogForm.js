@@ -15,6 +15,7 @@ import {
 import { DialogActions } from "@mui/material";
 import { DataEstateProvider } from "./DataEstateContext";
 import DynamicInputImage from "./DynamicInputImage";
+import DialogContactAgent from "./DialogContactAgent";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
@@ -149,9 +150,7 @@ const DialogForm = () => {
 						🏠 Apparts {status}
 					</DialogTitle>
 
-					<ContactButton className="me-4" variant={"outlined"}>
-						Contact agent
-					</ContactButton>
+					<DialogContactAgent />
 				</div>
 
 				<hr className="mx-2 my-0" />

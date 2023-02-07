@@ -3,10 +3,7 @@ import { pool, getEstateList } from "../../../lib/sqldb";
 const handler = async (req, res) => {
 
 	if (req.method === "POST") {
-		// try {
-		// 	await client.connect();
-		// }
-		// catch(e){}
+		
 		const newEstate = {
 			id: Date.now(),
 			...req.body.newEstate,
@@ -40,12 +37,9 @@ const handler = async (req, res) => {
 		res.status(201).json(result);
 
 	} else if (req.method === "GET") {
-		// try {
-		// 	await client.connect();
-		// }
-		// catch(e){}
+	
 		const estateList = await getEstateList()
-		// await client.release()
+
 		res.status(200).json(estateList.rows)
 
 	}

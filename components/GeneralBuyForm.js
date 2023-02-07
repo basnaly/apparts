@@ -2,16 +2,15 @@ import { CURRENCIES, UNITS } from "@/utils/constants";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { MenuItem } from "@mui/material";
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 import React, { useContext } from "react";
 import { DataBuyContext } from "./DataBuyContext";
 import { TitleBuyStyled } from "@/styles/StyledComponents";
 
 const GeneralBuyForm = () => {
-
 	const {
 		currency,
 		setCurrency,
@@ -80,9 +79,9 @@ const GeneralBuyForm = () => {
 					variant="outlined"
 					type="number"
 					inputProps={{
-						max: priceMax
+						max: priceMax,
 					}}
-					error={ +priceMin > +priceMax }
+					error={+priceMin > +priceMax}
 					value={priceMin}
 					onChange={(e) => setPriceMin(e.target.value)}
 				/>
@@ -96,9 +95,9 @@ const GeneralBuyForm = () => {
 					variant="outlined"
 					type="number"
 					inputProps={{
-						min: priceMin
+						min: priceMin,
 					}}
-					error={ +priceMax < +priceMin }
+					error={+priceMax < +priceMin}
 					value={priceMax}
 					onChange={(e) => setPriceMax(e.target.value)}
 				/>
@@ -133,9 +132,9 @@ const GeneralBuyForm = () => {
 					variant="outlined"
 					type="number"
 					inputProps={{
-						max: areaMax
+						max: areaMax,
 					}}
-					error={ +areaMax < +areaMin }
+					error={+areaMax < +areaMin}
 					value={areaMin}
 					onChange={(e) => setAreaMin(e.target.value)}
 				/>
@@ -148,9 +147,9 @@ const GeneralBuyForm = () => {
 					label="Area max"
 					variant="outlined"
 					inputProps={{
-						min: areaMin
+						min: areaMin,
 					}}
-					error={ +areaMax < +areaMin }
+					error={+areaMax < +areaMin}
 					value={areaMax}
 					onChange={(e) => setAreaMax(e.target.value)}
 				/>
@@ -166,9 +165,9 @@ const GeneralBuyForm = () => {
 					label="Bedrooms min"
 					variant="outlined"
 					inputProps={{
-						max: bedroomsMax
+						max: bedroomsMax,
 					}}
-					error={ +bedroomsMax < +bedroomsMin }
+					error={+bedroomsMax < +bedroomsMin}
 					value={bedroomsMin}
 					onChange={(e) => setBedroomsMin(e.target.value)}
 				/>
@@ -182,9 +181,9 @@ const GeneralBuyForm = () => {
 					label="Bedrooms max"
 					variant="outlined"
 					inputProps={{
-						min: bedroomsMin
+						min: bedroomsMin,
 					}}
-					error={ +bedroomsMin > +bedroomsMax }
+					error={+bedroomsMin > +bedroomsMax}
 					value={bedroomsMax}
 					onChange={(e) => setBedroomsMax(e.target.value)}
 				/>
@@ -198,9 +197,9 @@ const GeneralBuyForm = () => {
 					label="Bathrooms min"
 					variant="outlined"
 					inputProps={{
-						max: bathroomsMax
+						max: bathroomsMax,
 					}}
-					error={ +bathroomsMax < +bathroomsMin }
+					error={+bathroomsMax < +bathroomsMin}
 					value={bathroomsMin}
 					onChange={(e) => setBathroomsMin(e.target.value)}
 				/>
@@ -213,9 +212,9 @@ const GeneralBuyForm = () => {
 					label="Bathrooms max"
 					variant="outlined"
 					inputProps={{
-						min: bathroomsMin
+						min: bathroomsMin,
 					}}
-					error={ +bathroomsMin > +bathroomsMax }
+					error={+bathroomsMin > +bathroomsMax}
 					value={bathroomsMax}
 					onChange={(e) => setBathroomsMax(e.target.value)}
 				/>
@@ -225,22 +224,36 @@ const GeneralBuyForm = () => {
 				<TitleBuyStyled className="me-3">Estate type:</TitleBuyStyled>
 				<FormGroup className="d-flex flex-row">
 					<FormControlLabel
-						control={<Checkbox color="scarlet"/>}
+						control={
+							<Checkbox
+								color="scarlet"
+								checked={isHome}
+								onChange={(e) => setIsHome(e.target.checked)}
+							/>
+						}
 						label="Home"
-                        checked={isHome}
-                        onChange={(e) => setIsHome(e.target.value)}
 					/>
 					<FormControlLabel
-						control={<Checkbox color="scarlet" />}
+						control={
+							<Checkbox
+								color="scarlet"
+								checked={isCottage}
+								onChange={(e) => setIsCottage(e.target.checked)}
+							/>
+						}
 						label="Cottage"
-                        checked={isCottage}
-                        onChange={(e) => setIsCottage(e.target.value)}
 					/>
-                    <FormControlLabel
-						control={<Checkbox defaultChecked  color="scarlet"/>}
+					<FormControlLabel
+						control={
+							<Checkbox
+								color="scarlet"
+								checked={isAppartment}
+								onChange={(e) =>
+									setIsAppartment(e.target.checked)
+								}
+							/>
+						}
 						label="Appartment"
-                        checked={isAppartment}
-                        onChange={(e) => setIsAppartment(e.target.value)}
 					/>
 				</FormGroup>
 			</div>

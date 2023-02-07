@@ -1,25 +1,26 @@
-import styled, {css} from "styled-components";
-import { Button, Dialog, TextField } from "@mui/material";
+import styled, { css } from "styled-components";
+import { Button, Dialog, DialogActions, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Link from "next/link";
 import { COLORS } from "../utils/constants";
-import SearchIcon from '@mui/icons-material/Search';
-import CardHeader from '@mui/material/CardHeader';
+import SearchIcon from "@mui/icons-material/Search";
+import CardHeader from "@mui/material/CardHeader";
+import BranchComponent from "@/components/BranchComponent";
 
 export const MainStyled = styled.div`
 	height: 100vh;
-    background-color: ${COLORS.lightTeal};
-`
+	background-color: ${COLORS.lightTeal};
+`;
 
 export const BodyStyled = styled.div`
 	font-size: 20px;
-`
+`;
 
 export const HeaderStyled = styled.div`
 	background-color: ${COLORS.scarlet};
-    font-size: 24px;
+	font-size: 24px;
 	padding: 5px;
-`
+`;
 
 export const HeaderLinkStyled = styled(Link)`
 	color: ${COLORS.lightOlive};
@@ -28,28 +29,28 @@ export const HeaderLinkStyled = styled(Link)`
 		color: ${COLORS.lightTeal};
 	}
 	&.active {
-		border-bottom: 2px solid chartreuse;		
+		border-bottom: 2px solid chartreuse;
 	}
-`
+`;
 export const LinkNameStyled = styled(Link)`
 	text-decoration: none;
 	color: ${COLORS.lightTeal};
-    font-size: 30px;
+	font-size: 30px;
 	&:hover {
 		color: ${COLORS.lightOlive};
 	}
-`
+`;
 
 export const TextFieldStyled = styled(TextField)`
 	width: 450px;
 	margin-top: 20px;
-`
+`;
 
 export const SearchIconStyled = styled(SearchIcon)`
 	position: absolute;
-    top: 40px;
-    left: 420px;
-`
+	top: 40px;
+	left: 420px;
+`;
 
 export const FormButton = styled(Button)`
 	text-transform: none;
@@ -62,7 +63,7 @@ export const FormButton = styled(Button)`
 		background-color: ${COLORS.lightTeal};
 		border: 1px solid dimgray;
 	},
-`
+`;
 
 export const ContactButton = styled(Button)`
 	text-transform: none;
@@ -76,7 +77,7 @@ export const ContactButton = styled(Button)`
 		color: ${COLORS.lightOlive};
 		border: 1px solid dimgray;
 	},
-`
+`;
 
 export const SaveButton = styled(Button)`
 	text-transform: none;
@@ -90,7 +91,7 @@ export const SaveButton = styled(Button)`
 		color: ${COLORS.lightOlive};
 		border: 1px solid dimgray;
 	},
-`
+`;
 
 export const CancelButton = styled(Button)`
 	text-transform: none;
@@ -104,54 +105,69 @@ export const CancelButton = styled(Button)`
 		color: ${COLORS.scarlet};
 		border: 1px solid dimgray;
 	},
-`
+`;
+
+export const DialogActionsStyled = styled(DialogActions)`
+	margin-top: -20px;
+`;
 
 export const EstateListStyled = styled.div`
 	border: 1px solid dimgray;
 	background-color: ${COLORS.lightOlive};
-`
+`;
 
 export const AddIconStyled = styled(AddIcon)`
-	cursor: ${props => props.disabled ? 'not-allowed': 'pointer'};
-	color: ${props => props.disabled ? 'gray' : COLORS.scarlet};
-`
+	cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+	color: ${(props) => (props.disabled ? "gray" : COLORS.scarlet)};
+`;
 
 export const EstatePriceStyled = styled.div`
 	font-size: 26px;
 	font-weight: bold;
-`
+`;
 
 export const AddressStyled = styled.div`
 	font-size: 16px;
-`
+`;
 export const EstateSpanStyled = styled.span`
 	font-weight: bold;
 	margin: 0 5px;
-`
+`;
 
 export const ContactTitleStyled = styled.div`
-    font-size: 28px;
-`
+	font-size: 28px;
+`;
 
 export const BrunchTitleStyled = styled.div`
-    font-size: 22px;
+	font-size: 22px;
 	font-weight: bold;
-`
+`;
 
 export const BranchDataStyled = styled(Link)`
 	text-decoration: none;
 	color: black;
-    font-size: 20px;
+	font-size: 20px;
 	text-decoration: underline;
 	&:hover {
 		color: ${COLORS.scarlet};
 	}
-`
+`;
 
 export const TitleBuyStyled = styled.div`
-    font-size: 1rem;
-`
+	font-size: 1rem;
+`;
 
 export const CardHeaderStyled = styled(CardHeader)`
-    font-size: 20px;
-`
+	font-size: 20px;
+`;
+
+export const BranchComponentStyledGreen = styled(BranchComponent)`
+	background-color: ${COLORS.lightTeal};
+	border: 1px solid gray;
+	border-radius: 7px;
+`;
+
+export const ManagerNameStyled = styled.div`
+	font-size: 1.2rem;
+	font-weight: bold;
+`;
