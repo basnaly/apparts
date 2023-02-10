@@ -155,20 +155,20 @@ const DialogForm = () => {
 
 				<hr className="mx-2 my-0" />
 
-				<DialogContent className="d-flex flex-column overflow-auto flex-lg-row">
-					<div className="d-flex flex-column">
+				<DialogContent className="d-flex flex-column">
+					<div className="d-flex flex-column overflow-auto">
 						<GeneralEstateForm />
 						<DetailEstateForm />
+						<DynamicInputImage />
 					</div>
 
-					<DynamicInputImage />
 				</DialogContent>
 
 				<DialogActions className="d-flex align-items-center justify-content-center mb-3">
 					<SaveButton
 						onClick={saveEstate}
 						variant={"outlined"}
-						className=" mx-3"
+						className="mx-3"
 					>
 						Save
 					</SaveButton>

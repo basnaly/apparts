@@ -1,4 +1,4 @@
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signIn, signOut, useSession } from "next-auth/react";
 import {
 	HeaderLinkStyled,
 	HeaderStyled,
@@ -7,42 +7,48 @@ import {
 import DialogForm from "./DialogForm";
 
 const Header = () => {
+	const { data: session, status } = useSession();
+	const loading = status === "loading";
 
-	const { data: session, status } = useSession()
-	const loading = status === "loading"
+	// console.log({ session })
 
-	let authUser = ""
+	let authUser = "";
 
 	if (!loading && !session) {
 		authUser = (
-			<HeaderLinkStyled href="/api/auth/signin"
-				onClick={e => {
-					e.preventDefault()
-					signIn('github')
+			<HeaderLinkStyled
+				href="/api/auth/signin"
+				onClick={(e) => {
+					e.preventDefault();
+					signIn();
 				}}
 			>
 				Sign in
 			</HeaderLinkStyled>
-		)
+		);
 	} else if (!loading && session) {
 		authUser = (
-			<HeaderLinkStyled href="/api/auth/signout"
-				onClick={e => {
-					e.preventDefault()
-					signOut()
+			<HeaderLinkStyled
+				href="/api/auth/signout"
+				onClick={(e) => {
+					e.preventDefault();
+					signOut();
 				}}
 			>
 				Sign out
 			</HeaderLinkStyled>
-		)
+		);
 	}
 
 	return (
 		<HeaderStyled className="d-flex align-items-center justify-content-between">
 			<div className="d-flex align-items-center mx-3">
-				<HeaderLinkStyled href="/buy" className="me-3">
-					Buy
-				</HeaderLinkStyled>
+				{session && (
+					<HeaderLinkStyled href="/buy" className="me-3">
+						Buy
+					</HeaderLinkStyled>
+				)}
+
 				<HeaderLinkStyled href="/rent" className="me-3">
 					Rent
 				</HeaderLinkStyled>
@@ -51,20 +57,18 @@ const Header = () => {
 
 			<div className="d-flex align-items-center">
 				<LinkNameStyled href="/">
-					<div className="ms-2">
-					🏠 Apparts
-					</div>
+					<div className="ms-2">🏠 Apparts</div>
 				</LinkNameStyled>
 			</div>
 
 			<div className="d-flex align-items-center mx-3">
-				<DialogForm className="me-2" />
+				{session && <DialogForm className="me-2" />}
+
 				<HeaderLinkStyled href="/contacts" className="mx-3">
 					Contacts
 				</HeaderLinkStyled>
 
-			{ authUser }
-
+				{authUser}
 			</div>
 		</HeaderStyled>
 	);

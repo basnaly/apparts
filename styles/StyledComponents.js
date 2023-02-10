@@ -53,58 +53,66 @@ export const SearchIconStyled = styled(SearchIcon)`
 `;
 
 export const FormButton = styled(Button)`
-	text-transform: none;
-	color: ${COLORS.scarlet};
-	border: 1px solid dimgray;
-	font-size: 20px;
-	background-color: ${COLORS.lightOlive};
-	padding: 1px 8px;
-	&:hover {
-		background-color: ${COLORS.lightTeal};
+	&& {
+		text-transform: none;
+		color: ${COLORS.scarlet};
 		border: 1px solid dimgray;
-	},
+		font-size: 20px;
+		background-color: ${COLORS.lightOlive};
+		padding: 1px 8px;
+		&:hover {
+			background-color: ${COLORS.lightTeal};
+			border: 1px solid dimgray;
+		}
+	}
 `;
 
 export const ContactButton = styled(Button)`
-	text-transform: none;
-	color: ${COLORS.scarlet};
-	border: 1px solid dimgray;
-	font-size: 18px;
-	background-color: ${COLORS.lightTeal};
-	padding: 1px 6px;
-	&:hover {
-		background-color: gray;
-		color: ${COLORS.lightOlive};
+	&& {
+		text-transform: none;
+		color: ${COLORS.scarlet};
 		border: 1px solid dimgray;
-	},
+		font-size: 18px;
+		background-color: ${COLORS.lightTeal};
+		padding: 1px 6px;
+		&:hover {
+			background-color: gray;
+			color: ${COLORS.lightOlive};
+			border: 1px solid dimgray;
+		}
+	}
 `;
 
 export const SaveButton = styled(Button)`
-	text-transform: none;
-	color: ${COLORS.lightOlive};
-	border: 1px solid dimgray;
-	font-size: 20px;
-	background-color: ${COLORS.lightTeal};
-	padding: 1px 8px;
-	&:hover {
-		background-color: gray;
+	&& {
+		text-transform: none;
 		color: ${COLORS.lightOlive};
 		border: 1px solid dimgray;
-	},
+		font-size: 20px;
+		background-color: ${COLORS.lightTeal};
+		padding: 1px 8px;
+		&:hover {
+			background-color: gray;
+			color: ${COLORS.lightOlive};
+			border: 1px solid dimgray;
+		}
+	}
 `;
 
 export const CancelButton = styled(Button)`
-	text-transform: none;
-	color: ${COLORS.lightOlive};
-	border: 1px solid dimgray;
-	font-size: 20px;
-	background-color: ${COLORS.scarlet};
-	padding: 1px 8px;
-	&:hover {
-		background-color: gray;
-		color: ${COLORS.scarlet};
+	&& {
+		text-transform: none;
+		color: ${COLORS.lightOlive};
 		border: 1px solid dimgray;
-	},
+		font-size: 20px;
+		background-color: ${COLORS.scarlet};
+		padding: 1px 8px;
+		&:hover {
+			background-color: gray;
+			color: ${COLORS.scarlet};
+			border: 1px solid dimgray;
+		}
+	}
 `;
 
 export const DialogActionsStyled = styled(DialogActions)`
@@ -170,4 +178,10 @@ export const BranchComponentStyledGreen = styled(BranchComponent)`
 export const ManagerNameStyled = styled.div`
 	font-size: 1.2rem;
 	font-weight: bold;
+`;
+
+export const UserNameStyled = styled.span`
+	color: ${COLORS.scarlet};
+	font-size: 1.8rem;
+	// font-weight: bold;
 `;

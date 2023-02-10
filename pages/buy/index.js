@@ -4,15 +4,17 @@ import DialogContactAgent from "@/components/DialogContactAgent";
 import GeneralBuyForm from "@/components/GeneralBuyForm";
 import {
 	CancelButton,
-	ContactButton,
 	ContactTitleStyled,
 	SaveButton,
+	UserNameStyled,
 } from "@/styles/StyledComponents";
 import { Card, CardContent } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 const Buy = () => {
+
 	const [currency, setCurrency] = useState("$");
 	const [priceMin, setPriceMin] = useState(0);
 	const [priceMax, setPriceMax] = useState(0);
@@ -45,6 +47,11 @@ const Buy = () => {
 	const [addRequest, setAddRequest] = useState([]);
 
 	const [status, setStatus] = useState("");
+
+	const { data: session } = useSession()
+
+	console.log(session)
+	const user = session?.user?.name 
 
 	const saveBuyForm = async () => {
 		const response = await fetch("/api/appart-buy", {
@@ -161,7 +168,7 @@ const Buy = () => {
 		>
 			<div className="d-flex flex-column align-items-center w-100">
 				<ContactTitleStyled className="my-3">
-					Hello, please fill the form or contact us:
+					Hello <UserNameStyled>{user}</UserNameStyled>, please fill the form or contact us:
 				</ContactTitleStyled>
 
 				<Card className="shadow-lg overflow-auto">

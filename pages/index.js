@@ -49,7 +49,7 @@ const Home = () => {
 						alt={img}
 						width="650"
 						height="450"
-						className="flex-shrink-0 my-4"
+						className="flex-shrink-0 my-4 m-auto"
 					/>
 				)}
 			</div>
