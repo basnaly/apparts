@@ -52,5 +52,14 @@ export const myTheme = createTheme({
 				},
 			},
 		},
+		MuiBadge: {
+			styleOverrides: {
+				badge: {
+					backgroundColor: COLORS.lightTeal,
+					color: COLORS.scarlet,
+					fontWeight: "bold"
+				}
+			}
+		}
 	},
 });

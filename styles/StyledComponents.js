@@ -48,7 +48,7 @@ export const TextFieldStyled = styled(TextField)`
 
 export const SearchIconStyled = styled(SearchIcon)`
 	position: absolute;
-	top: 40px;
+	top: 20px;
 	left: 420px;
 `;
 

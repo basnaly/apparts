@@ -11,9 +11,9 @@ import {
 import { Card, CardContent } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
-const Buy = () => {
+const Buy = ({ username }) => {
 
 	const [currency, setCurrency] = useState("$");
 	const [priceMin, setPriceMin] = useState(0);
@@ -47,11 +47,6 @@ const Buy = () => {
 	const [addRequest, setAddRequest] = useState([]);
 
 	const [status, setStatus] = useState("");
-
-	const { data: session } = useSession()
-
-	console.log(session)
-	const user = session?.user?.name 
 
 	const saveBuyForm = async () => {
 		const response = await fetch("/api/appart-buy", {
@@ -92,7 +87,6 @@ const Buy = () => {
 		} else {
 			setStatus("Failed to create the request");
 		}
-
 	}
 
 	const clearData = () => {
@@ -168,7 +162,7 @@ const Buy = () => {
 		>
 			<div className="d-flex flex-column align-items-center w-100">
 				<ContactTitleStyled className="my-3">
-					Hello <UserNameStyled>{user}</UserNameStyled>, please fill the form or contact us:
+					Hello <UserNameStyled>{username}</UserNameStyled>, please fill the form or contact us:
 				</ContactTitleStyled>
 
 				<Card className="shadow-lg overflow-auto">
@@ -216,3 +210,24 @@ const Buy = () => {
 };
 
 export default Buy;
+
+export const getServerSideProps = async (context) => {
+
+	const session = await getSession(context)
+	console.log(session)
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: process.env.BUY_REDIRECT_LOGIN,
+				permanent: false
+			}
+		}
+	}
+
+	return {
+		props: {
+			username: session.user.name
+		}
+	}
+}

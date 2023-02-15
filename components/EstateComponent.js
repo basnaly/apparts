@@ -2,9 +2,11 @@ import React from "react";
 import Image from "next/image";
 import {
 	AddressStyled,
+	CancelButton,
 	EstateListStyled,
 	EstatePriceStyled,
 	EstateSpanStyled,
+	SaveButton,
 } from "../styles/StyledComponents";
 import { Chip } from "@mui/material";
 
@@ -45,6 +47,24 @@ const EstateComponent = ({ el }) => {
 			) : (
 				""
 			)}
+
+			<div className="d-flex align-items-center justify-content-center mt-3">
+			<SaveButton
+						// onClick={saveEstate}
+						variant={"outlined"}
+						className="mx-3"
+					>
+						Edit
+					</SaveButton>
+
+					<CancelButton
+						// onClick={closeDialog}
+						variant={"outlined"}
+						className=" mx-3"
+					>
+						Delete
+					</CancelButton>
+			</div>
 		</EstateListStyled>
 	);
 };

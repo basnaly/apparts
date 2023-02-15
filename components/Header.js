@@ -5,6 +5,9 @@ import {
 	LinkNameStyled,
 } from "../styles/StyledComponents";
 import DialogForm from "./DialogForm";
+import Badge from "@mui/material/Badge";
+import EmailIcon from "@mui/icons-material/Email";
+import { COLORS } from "@/utils/constants";
 
 const Header = () => {
 	const { data: session, status } = useSession();
@@ -44,9 +47,17 @@ const Header = () => {
 		<HeaderStyled className="d-flex align-items-center justify-content-between">
 			<div className="d-flex align-items-center mx-3">
 				{session && (
-					<HeaderLinkStyled href="/buy" className="me-3">
-						Buy
-					</HeaderLinkStyled>
+					<>
+						<HeaderLinkStyled href="/buy" className="me-3">
+							Buy
+						</HeaderLinkStyled>
+
+						<Badge badgeContent={4} color="success" className="me-3">
+							<EmailIcon
+								sx={{ color: COLORS.lightOlive }}
+							/>
+						</Badge>
+					</>
 				)}
 
 				<HeaderLinkStyled href="/rent" className="me-3">

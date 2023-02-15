@@ -6,10 +6,10 @@ const SearchInput = ({ findFilteredEstates }) => {
 	return (
 		
 		<Box
-			component="form"
+			// component="form"
 			noValidate
 			autoComplete="off"
-			className="d-flex flex-column align-items-center mt-2 position-relative"
+			className="d-flex flex-column align-items-center mt-4 position-relative"
 		>
 			<div className="position-relative">
 				<TextFieldStyled

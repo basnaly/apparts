@@ -54,7 +54,7 @@ const DialogContactAgent = () => {
 				onClose={closeDialog}
 				aria-labelledby="alert-dialog-title"
 				aria-describedby="alert-dialog-description"
-				maxWidth={true}
+				maxWidth='true'
                 sx={{ mx: 'calc(50vw - 470px)'}}
                 
 			>
