@@ -6,20 +6,72 @@ import validatePassword from "@/lib/validatePassword";
 import checkUserExists from "@/lib/checkUserExists";
 import createUser from "@/lib/createUser";
 import verifyPassword from "@/lib/verifyPassword";
+import { pool } from "@/lib/sqldb";
 
 export default NextAuth({
 	site: process.env.NEXTAUTH_URL,
+	pages: {
+		// $signIn: '/sign-in',
+	},
 	session: {
-		jwt: true,
+		strategy: "jwt",
+	},
+	secret: process.env.NEXTAUTH_SECRET,
+	jwt: {
+        secret: process.env.NEXTAUTH_SECRET,
+    },
+	callbacks: {
+		async jwt({token, user, profile}) {
+			if (user) {
+				token.role = user.role || profile.local_role
+			}
+			return token
+		},
+		async session({session, token}) {
+			if (token) {
+				session.user.role = token.role
+			}
+			
+			// console.log(session.user)
+			return session
+		}
 	},
 	providers: [
 		GitHubProvider({
 			clientId: process.env.GITHUB_ID,
 			clientSecret: process.env.GITHUB_SECRET,
+			profile: async (profile) => {
+				const isUserExists = await checkUserExists(
+					profile.email
+				);
+				if (!isUserExists) {
+					await createUser(profile.email, profile.login, "")
+				}
+				else {
+					const local_user = await pool.query(`SELECT * FROM local_users WHERE email = '${profile.email}'`);
+					profile.local_role = local_user.rows[0].role
+				}
+				return profile
+			},
 		}),
+
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+			profile: async (profile) => {
+				const isUserExists = await checkUserExists(
+					profile.email
+				);
+				if (!isUserExists) {
+				await createUser(profile.email, profile.login, "")
+				}
+				else {
+					const local_user = await pool.query(`SELECT * FROM local_users WHERE email = '${profile.email}'`);
+					profile.local_role = local_user.rows[0].role
+				}
+				profile.id = profile.email
+				return profile
+			}
 		}),
 
 		CredentialsProvider({
@@ -66,4 +118,5 @@ export default NextAuth({
 			},
 		}),
 	],
+	// adapter: PostgresAdapter(pool)
 });
