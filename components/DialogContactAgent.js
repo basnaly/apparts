@@ -7,7 +7,7 @@ import {
 	CancelButton,
 	ContactButton,
     DialogActionsStyled,
-} from "@/styles/StyledComponents";
+} from "../styles/StyledComponents";
 import useSWR from "swr";
 
 const Transition = React.forwardRef(function Transition(props, ref) {

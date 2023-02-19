@@ -40,7 +40,7 @@ export const myTheme = createTheme({
 			styleOverrides: {
 				notchedOutline: {
 					color: COLORS.scarlet,
-					// borderColor: "dimgray",
+					borderColor: "dimgray",
 				},
 			},
 		},
@@ -58,6 +58,13 @@ export const myTheme = createTheme({
 					backgroundColor: COLORS.lightTeal,
 					color: COLORS.scarlet,
 					fontWeight: "bold"
+				}
+			}
+		},
+		MuiFormLabel: {
+			styleOverrides: {
+				root: {
+					color: COLORS.scarlet,
 				}
 			}
 		}

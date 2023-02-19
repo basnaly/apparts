@@ -8,7 +8,6 @@ import GeneralEstateForm from "./GeneralEstateForm";
 import DetailEstateForm from "./DetailEstateForm";
 import {
 	CancelButton,
-	ContactButton,
 	FormButton,
 	SaveButton,
 } from "../styles/StyledComponents";
@@ -22,6 +21,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const DialogForm = () => {
+	
 	const [currency, setCurrency] = useState("$");
 	const [unit, setUnit] = useState("sqm");
 	const [price, setPrice] = useState(0);

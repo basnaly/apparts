@@ -73,7 +73,7 @@ const Header = () => {
 			</div>
 
 			<div className="d-flex align-items-center mx-3">
-				{session && <DialogForm className="me-2" />}
+				{session?.user?.role === "admin" && <DialogForm className="me-2" />}
 
 				<HeaderLinkStyled href="/contacts" className="mx-3">
 					Contacts

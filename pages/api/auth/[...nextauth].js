@@ -11,7 +11,7 @@ import { pool } from "@/lib/sqldb";
 export default NextAuth({
 	site: process.env.NEXTAUTH_URL,
 	pages: {
-		// $signIn: '/sign-in',
+		signIn: '/signin',
 	},
 	session: {
 		strategy: "jwt",
@@ -23,7 +23,7 @@ export default NextAuth({
 	callbacks: {
 		async jwt({token, user, profile}) {
 			if (user) {
-				token.role = user.role || profile.local_role
+				token.role = user.role || profile?.local_role
 			}
 			return token
 		},

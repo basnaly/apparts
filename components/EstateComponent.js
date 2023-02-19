@@ -9,8 +9,13 @@ import {
 	SaveButton,
 } from "../styles/StyledComponents";
 import { Chip } from "@mui/material";
+import { useSession } from "next-auth/react";
 
 const EstateComponent = ({ el }) => {
+
+	const { data: session, status } = useSession();
+	// const loading = status === "loading";
+	// console.log({ session });
 
 	return (
 		<EstateListStyled
@@ -21,9 +26,10 @@ const EstateComponent = ({ el }) => {
 				<EstatePriceStyled className="d-flex">
 					{el.currency} {el.price.toLocaleString("en-US")}
 				</EstatePriceStyled>
-				<Chip label={el.estateaction} 
-					color="scarlet" 
-					sx={{fontWeight: "bold"}} 
+				<Chip
+					label={el.estateaction}
+					color="scarlet"
+					sx={{ fontWeight: "bold" }}
 				/>
 			</div>
 			<div className="d-flex">
@@ -48,8 +54,9 @@ const EstateComponent = ({ el }) => {
 				""
 			)}
 
-			<div className="d-flex align-items-center justify-content-center mt-3">
-			<SaveButton
+			{session?.user?.role === "admin" ? (
+				<div className="d-flex align-items-center justify-content-center mt-3">
+					<SaveButton
 						// onClick={saveEstate}
 						variant={"outlined"}
 						className="mx-3"
@@ -64,7 +71,10 @@ const EstateComponent = ({ el }) => {
 					>
 						Delete
 					</CancelButton>
-			</div>
+				</div>
+			) : (
+				""
+			)}
 		</EstateListStyled>
 	);
 };

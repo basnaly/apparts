@@ -5,7 +5,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import BadgeIcon from '@mui/icons-material/Badge';
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { BranchDataStyled, BrunchTitleStyled, ManagerNameStyled } from '@/styles/StyledComponents';
+import { BranchDataStyled, BrunchTitleStyled, ManagerNameStyled } from '../styles/StyledComponents';
 
 const BranchComponent = ({ el, className = "" }) => {
 
