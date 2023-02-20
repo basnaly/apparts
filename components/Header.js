@@ -4,16 +4,15 @@ import {
 	HeaderStyled,
 	LinkNameStyled,
 } from "../styles/StyledComponents";
-import DialogForm from "./DialogForm";
+import DialogEstateForm from "./DialogEstateForm";
 import Badge from "@mui/material/Badge";
 import EmailIcon from "@mui/icons-material/Email";
 import { COLORS } from "@/utils/constants";
 
 const Header = () => {
+
 	const { data: session, status } = useSession();
 	const loading = status === "loading";
-
-	// console.log({ session })
 
 	let authUser = "";
 
@@ -73,7 +72,7 @@ const Header = () => {
 			</div>
 
 			<div className="d-flex align-items-center mx-3">
-				{session?.user?.role === "admin" && <DialogForm className="me-2" />}
+				{session?.user?.role === "admin" && <DialogEstateForm className="me-2" />}
 
 				<HeaderLinkStyled href="/contacts" className="mx-3">
 					Contacts

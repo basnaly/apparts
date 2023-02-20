@@ -14,21 +14,24 @@ const fetcher = async () => {
 
 const Home = () => {
 	
-	const { data, error } = useSWR("estateList", fetcher);
+	const { data, error, mutate } = useSWR("estateList", fetcher);
 
 	const [filteredEstates, setFilteredEstates] = useState([]);
 
 	if (error) return "An error was occur";
 	if (!data) return "Loading..";
+	
 
 	const findFilteredEstates = (e) => {
 		const filteredData = data.filter((el) =>
 			el.address.toLowerCase().includes(e.target.value)
 		);
 		setFilteredEstates(filteredData);
-		console.log(filteredData);
 	};
 
+	const mutateLocal =()=>{
+		mutate().then(()=> setFilteredEstates([]))
+	}
 	return (
 		<div className="d-flex flex-column text-align-center w-100">
 
@@ -38,7 +41,7 @@ const Home = () => {
 				{filteredEstates.length !== 0 ? (
 					filteredEstates.map((el) => (
 						<div key={el.id}>
-							<EstateComponent el={el} />
+							<EstateComponent el={el} mutate={mutateLocal}/>
 						</div>
 					))
 				) : (

@@ -12,7 +12,6 @@ const Sell = ({ data }) => {
 			el.address.toLowerCase().includes(e.target.value)
 		);
 		setFilteredEstates(filteredData);
-		console.log(filteredData);
 	};
 
 	return (
@@ -35,7 +34,7 @@ export default Sell;
 
 export const getStaticProps = async () => {
     
-	const estateListByAction = await getEstateListByAction("Sell");
+	const estateListByAction = await getEstateListByAction("sell");
 
 	return {
 		props: {

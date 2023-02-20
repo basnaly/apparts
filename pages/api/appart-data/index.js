@@ -8,7 +8,6 @@ const handler = async (req, res) => {
 			id: Date.now(),
 			...req.body.newEstate,
 		};
-		console.log(newEstate);
 
 		const result = await pool.query(
 			`INSERT INTO apparts 
@@ -32,8 +31,6 @@ const handler = async (req, res) => {
 				newEstate.images,
 			]
 		);
-		console.log(result);
-		// await client.release()
 		res.status(201).json(result);
 
 	} else if (req.method === "GET") {

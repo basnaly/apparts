@@ -2,7 +2,6 @@ import EstateComponent from "../../components/EstateComponent";
 import { getEstateList } from "../../lib/sqldb";
 
 const Data = ({ data }) => {
-	// console.log(data);
 
 	return (
 		<div className="d-flex flex-wrap overflow-auto">

@@ -25,8 +25,6 @@ const SignIn = ({ providers }) => {
 		setChecked(event.target.checked);
 	};
 
-	// console.log(providers);
-
 	const logIn = () => {
 		signIn("credentials", { email, password, isLogin: "login" });
 	};

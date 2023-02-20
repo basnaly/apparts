@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Button, Dialog, DialogActions, TextField } from "@mui/material";
+import { Button, Dialog, DialogActions, TextField, DialogContentText, DialogTitle } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Link from "next/link";
 import { COLORS } from "../utils/constants";
@@ -128,6 +128,7 @@ export const EstateListStyled = styled.div`
 export const AddIconStyled = styled(AddIcon)`
 	cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
 	color: ${(props) => (props.disabled ? "gray" : COLORS.scarlet)};
+	margin-top: 15px;
 `;
 
 export const EstatePriceStyled = styled.div`
@@ -249,4 +250,18 @@ export const AntSwitch = styled(Switch)(({ theme }) => ({
 export const CredentialStyled = styled.div`
 	font-size: 1.2rem;
 	// font-weight: bold;
+`;
+
+export const ImageStyled = styled.img`
+	max-width: 500px;
+	margin: auto;
+`;
+
+export const DialogContentTextStyled = styled(DialogContentText)`
+	color: black;
+	font-size: 1.2rem;
+`;
+
+export const DialogTitleStyled = styled(DialogTitle)`
+	font-size: 1.5rem;
 `;

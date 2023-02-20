@@ -3,12 +3,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-
 import GeneralEstateForm from "./GeneralEstateForm";
 import DetailEstateForm from "./DetailEstateForm";
 import {
 	CancelButton,
-	FormButton,
 	SaveButton,
 } from "../styles/StyledComponents";
 import { DialogActions } from "@mui/material";
@@ -20,26 +18,26 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const DialogForm = () => {
-	
-	const [currency, setCurrency] = useState("$");
-	const [unit, setUnit] = useState("sqm");
-	const [price, setPrice] = useState(0);
-	const [bedrooms, setBedrooms] = useState(1);
-	const [bathrooms, setBathrooms] = useState(1);
-	const [area, setArea] = useState(0);
-	const [address, setAddress] = useState("");
-	const [estateType, setEstateType] = useState("Appartment");
-	const [estateAction, setEstateAction] = useState("Sell");
+const EditEstateForm = ({ el, mutate }) => {
 
-	const [yearBuild, setYearBuild] = useState(2000);
-	const [heating, setHeating] = useState("");
-	const [cooling, setCooling] = useState("");
-	const [parking, setParking] = useState("");
+    const [currency, setCurrency] = useState(el?.currency);
+	const [unit, setUnit] = useState(el?.unit);
+	const [price, setPrice] = useState(el?.price);
+	const [bedrooms, setBedrooms] = useState(el?.bedrooms);
+	const [bathrooms, setBathrooms] = useState(el?.bathrooms);
+	const [area, setArea] = useState(el?.area);
+	const [address, setAddress] = useState(el?.address);
+	const [estateType, setEstateType] = useState(el?.estatetype);
+	const [estateAction, setEstateAction] = useState(el?.estateaction);
 
-	const [images, setImages] = useState([]);
+	const [yearBuild, setYearBuild] = useState(el?.yearbuild);
+	const [heating, setHeating] = useState(el?.heating);
+	const [cooling, setCooling] = useState(el?.cooling);
+	const [parking, setParking] = useState(el?.parking);
 
-	const [isDialogOpen, setIsDialogOpen] = useState(false);
+	const [images, setImages] = useState(el?.images);
+
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [status, setStatus] = useState("");
 
 	const openDialog = () => {
@@ -50,15 +48,11 @@ const DialogForm = () => {
 		setIsDialogOpen(false);
 	};
 
-	const openOrderItems = () => {
-		openDialog();
-	};
-
-	const saveEstate = async () => {
-		const response = await fetch("/api/appart-data", {
+    const saveEditedEstate = async () => {
+		const response = await fetch(`/api/appart-data/${el.id}`, {
 			method: "POST",
 			body: JSON.stringify({
-				newEstate: {
+				estate: {
 					currency,
 					unit,
 					price,
@@ -86,9 +80,10 @@ const DialogForm = () => {
 		} else {
 			setStatus("Failed to create the estate");
 		}
-
-		setTimeout(() => setIsDialogOpen(false), 3000);
+        // mutate()
+		setTimeout(() => setIsDialogOpen(false), 1000);
 	};
+
 
 	return (
 		<DataEstateProvider
@@ -123,13 +118,13 @@ const DialogForm = () => {
 				setImages,
 			}}
 		>
-			<FormButton
-				variant={"outlined"}
-				className="mx-2"
-				onClick={openOrderItems}
+			<SaveButton
+				onClick={openDialog}
+				variant="outlined"
+				className="mx-3"
 			>
-				Add estate
-			</FormButton>
+				Edit
+			</SaveButton>
 
 			<Dialog
 				open={isDialogOpen}
@@ -161,12 +156,11 @@ const DialogForm = () => {
 						<DetailEstateForm />
 						<DynamicInputImage />
 					</div>
-
 				</DialogContent>
 
 				<DialogActions className="d-flex align-items-center justify-content-center mb-3">
 					<SaveButton
-						onClick={saveEstate}
+						onClick={saveEditedEstate}
 						variant={"outlined"}
 						className="mx-3"
 					>
@@ -186,4 +180,4 @@ const DialogForm = () => {
 	);
 };
 
-export default DialogForm;
+export default EditEstateForm;

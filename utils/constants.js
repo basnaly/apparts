@@ -4,9 +4,9 @@ export const COLORS = {
 	lightTeal: "#A7BEAE",
 };
 
-export const ESTATE_TYPES = ["Home", "Cottage", "Appartment"];
+export const ESTATE_TYPES = ["home", "cottage", "appartment"];
 
-export const ESTATE_ACTION = ["Sell", "Rent", "Buy"]
+export const ESTATE_ACTION = ["sell", "rent", "buy"]
 
 export const CURRENCIES = [ "$", "€"];
 

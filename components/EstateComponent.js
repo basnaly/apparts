@@ -2,20 +2,21 @@ import React from "react";
 import Image from "next/image";
 import {
 	AddressStyled,
-	CancelButton,
 	EstateListStyled,
 	EstatePriceStyled,
 	EstateSpanStyled,
-	SaveButton,
 } from "../styles/StyledComponents";
 import { Chip } from "@mui/material";
 import { useSession } from "next-auth/react";
+import EditEstateForm from "./EditEstateForm";
+import DeleteEstateDialog from "./DeleteEstateDialog";
+import img from "../public/estate.png";
 
-const EstateComponent = ({ el }) => {
+const EstateComponent = ({ el, mutate }) => {
 
 	const { data: session, status } = useSession();
-	// const loading = status === "loading";
-	// console.log({ session });
+	
+	const estateImage = el?.images[0]
 
 	return (
 		<EstateListStyled
@@ -29,7 +30,7 @@ const EstateComponent = ({ el }) => {
 				<Chip
 					label={el.estateaction}
 					color="scarlet"
-					sx={{ fontWeight: "bold" }}
+					sx={{ fontWeight: "bold", textTransform: "capitalize" }}
 				/>
 			</div>
 			<div className="d-flex">
@@ -41,36 +42,32 @@ const EstateComponent = ({ el }) => {
 
 			<AddressStyled className="d-flex">{el.address}</AddressStyled>
 
-			{el.images !== null ? (
+			{el.images !== null && el.images.length !== 0 && estateImage !== "" ? (
 				<Image
-					src={el.images[0]}
-					alt={el.images[0]}
-					width="200"
-					height="200"
-					priority="true"
-					className="mt-3"
+					src = {estateImage}
+					alt = {estateImage}
+					width = "200"
+					height = "200"
+					priority = "true"
+					className = "mt-3"
 				/>
 			) : (
-				""
+				<Image
+					src = {img}
+					alt = "Apparts"
+					width = "200"
+					height = "200"
+					priority = "true"
+					className = "mt-3"
+				/>
 			)}
 
 			{session?.user?.role === "admin" ? (
 				<div className="d-flex align-items-center justify-content-center mt-3">
-					<SaveButton
-						// onClick={saveEstate}
-						variant={"outlined"}
-						className="mx-3"
-					>
-						Edit
-					</SaveButton>
 
-					<CancelButton
-						// onClick={closeDialog}
-						variant={"outlined"}
-						className=" mx-3"
-					>
-						Delete
-					</CancelButton>
+					<EditEstateForm el={el} mutate={mutate} />
+
+					<DeleteEstateDialog el={el} />
 				</div>
 			) : (
 				""

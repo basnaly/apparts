@@ -24,7 +24,6 @@ const DynamicInputAddRequest = () => {
 
 			const addRequestList = newPrev.filter((el) => el !== "");
 			// ['gh', 'cd', 'ef'].filter(el => el !== "") remove ""
-			console.log(addRequestList);
 
 			setAddRequest(addRequestList);
 			return newPrev; // ['gh', 'cd', 'ef']

@@ -3,7 +3,6 @@ import { getBranchList } from "@/lib/sqldb";
 import BranchComponent from "@/components/BranchComponent";
 
 const Contacts = ({ data, isPreviewMode }) => {
-	console.log(data);
 
 	if (isPreviewMode) {
 		return (

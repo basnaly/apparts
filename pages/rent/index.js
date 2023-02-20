@@ -12,7 +12,6 @@ const Rent = ({ data }) => {
 			el.address.toLowerCase().includes(e.target.value)
 		);
 		setFilteredEstates(filteredData);
-		console.log(filteredData);
 	};
 
     return (
@@ -35,7 +34,7 @@ export default Rent
 
 export const getStaticProps = async () => {
     
-	const estateListByAction = await getEstateListByAction("Rent");
+	const estateListByAction = await getEstateListByAction("rent");
 
 	return {
 		props: {

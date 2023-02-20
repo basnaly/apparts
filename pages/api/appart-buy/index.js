@@ -16,7 +16,6 @@ const handler = async (req, res) => {
 			id: Date.now(),
 			...req.body.newBuyEstate,
 		};
-		console.log(newBuyEstate);
 
 		const result = await pool.query(
 			`INSERT INTO buyestate 
@@ -48,7 +47,6 @@ const handler = async (req, res) => {
 				session.user.email,
 			]
 		);
-		console.log(result);
 		res.status(201).json(result);
 	}     
 };

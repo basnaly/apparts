@@ -7,7 +7,7 @@ const DynamicInputImage = () => {
 
 	const { images, setImages } = useContext(DataEstateContext);
 
-	const [inputs, setInputs] = useState(['']);
+	const [inputs, setInputs] = useState(images.length === 0 ? [""] : images);
 
 	const addInputField = () => {
 		if (inputs.length < 10) {
@@ -22,7 +22,6 @@ const DynamicInputImage = () => {
 			
 			const imageList = newPrev
 				.filter((el) => el !== "")
-			console.log(imageList);
 			
 			setImages(imageList);
 			return newPrev; // [arr with all inputs incl changed]
@@ -30,7 +29,7 @@ const DynamicInputImage = () => {
 	};
 
 	return (
-		<div className="d-flex align-items-center justify-content-center">
+		<div className="d-flex align-items-start justify-content-center">
 			{inputs.map((el, i) => (
 				<ImageForm
 					key={i}

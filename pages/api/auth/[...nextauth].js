@@ -24,15 +24,15 @@ export default NextAuth({
 		async jwt({token, user, profile}) {
 			if (user) {
 				token.role = user.role || profile?.local_role
+				token.name = user.name || profile?.local_name
 			}
 			return token
 		},
 		async session({session, token}) {
 			if (token) {
 				session.user.role = token.role
+				session.user.name = token.name
 			}
-			
-			// console.log(session.user)
 			return session
 		}
 	},
@@ -50,6 +50,7 @@ export default NextAuth({
 				else {
 					const local_user = await pool.query(`SELECT * FROM local_users WHERE email = '${profile.email}'`);
 					profile.local_role = local_user.rows[0].role
+					profile.local_name = local_user.rows[0].name
 				}
 				return profile
 			},
@@ -68,6 +69,7 @@ export default NextAuth({
 				else {
 					const local_user = await pool.query(`SELECT * FROM local_users WHERE email = '${profile.email}'`);
 					profile.local_role = local_user.rows[0].role
+					profile.local_name = local_user.rows[0].name
 				}
 				profile.id = profile.email
 				return profile
@@ -94,7 +96,6 @@ export default NextAuth({
 				},
 			},
 			async authorize(credentials, req) {
-				console.log(credentials);
 
 				if (credentials.isLogin === "login") {
 					return await verifyPassword(
