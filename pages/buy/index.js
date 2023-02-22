@@ -6,15 +6,17 @@ import {
 	CancelButton,
 	ContactTitleStyled,
 	SaveButton,
+	StatusMessageStyled,
+	StatusStyled,
 	UserNameStyled,
 } from "@/styles/StyledComponents";
 import { Card, CardContent } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import { useState } from "react";
 import { getSession } from "next-auth/react";
+import { getBuyEstateEmail } from "@/lib/sqldb";
 
-const Buy = ({ username }) => {
-
+const Buy = ({ username, countRequests }) => {
 	const [currency, setCurrency] = useState("$");
 	const [priceMin, setPriceMin] = useState(0);
 	const [priceMax, setPriceMax] = useState(0);
@@ -73,7 +75,7 @@ const Buy = ({ username }) => {
 					floorMax,
 					parkingMin,
 					parkingMax,
-					addRequest
+					addRequest,
 				},
 			}),
 			headers: {
@@ -83,11 +85,12 @@ const Buy = ({ username }) => {
 		// const data = await response.json()
 
 		if (response.ok) {
-			setStatus("The request was created");
+			setStatus("Your request was created!");
 		} else {
-			setStatus("Failed to create the request");
+			setStatus("Failed to create the request!");
 		}
-	}
+		clearData();
+	};
 
 	const clearData = () => {
 		setCurrency("$");
@@ -162,7 +165,8 @@ const Buy = ({ username }) => {
 		>
 			<div className="d-flex flex-column align-items-center w-100">
 				<ContactTitleStyled className="my-3">
-					Hello <UserNameStyled>{username}</UserNameStyled>, please fill the form or contact us:
+					Hello <UserNameStyled>{username}</UserNameStyled>, please
+					fill the form or contact us:
 				</ContactTitleStyled>
 
 				<Card className="shadow-lg overflow-auto">
@@ -172,37 +176,54 @@ const Buy = ({ username }) => {
 						</div>
 
 						<DialogContactAgent />
-
 					</div>
 					<hr className="mx-2 my-0" />
 
-					<CardContent>
-						<GeneralBuyForm />
-						<DetailBuyForm />
-					</CardContent>
+					{status || countRequests > 0 ? (
+						<div className="d-flex flex-column align-items-center">
+							<StatusStyled>
+								{status}
+							</StatusStyled>
+							<StatusMessageStyled>
+								You already have submitted buy form,
+								wait for our agent to contact you.
+							</StatusMessageStyled>
+						</div>
+					) : (
+						<>
+							<CardContent>
+								<GeneralBuyForm />
+								<DetailBuyForm />
+							</CardContent>
 
-					<CardActions className="d-flex align-items-center justify-content-center mb-3">
-						<SaveButton
-							onClick={saveBuyForm}
-							variant={"outlined"}
-							className=" mx-3"
-							disabled={ +priceMin > +priceMax || +areaMin > +areaMax 
-								|| +bedroomsMin > +bedroomsMax || +bathroomsMin > +bathroomsMax
-								|| +yearBuildMin > +yearBuildMax || +floorMin > +floorMax
-								|| +parkingMin > +parkingMax
-							} 
-						>
-							Save
-						</SaveButton>
+							<CardActions className="d-flex align-items-center justify-content-center mb-3">
+								<SaveButton
+									onClick={saveBuyForm}
+									variant={"outlined"}
+									className=" mx-3"
+									disabled={
+										+priceMin > +priceMax ||
+										+areaMin > +areaMax ||
+										+bedroomsMin > +bedroomsMax ||
+										+bathroomsMin > +bathroomsMax ||
+										+yearBuildMin > +yearBuildMax ||
+										+floorMin > +floorMax ||
+										+parkingMin > +parkingMax
+									}
+								>
+									Save
+								</SaveButton>
 
-						<CancelButton
-							onClick={clearData}
-							variant={"outlined"}
-							className=" mx-3"
-						>
-							Clear
-						</CancelButton>
-					</CardActions>
+								<CancelButton
+									onClick={clearData}
+									variant={"outlined"}
+									className=" mx-3"
+								>
+									Clear
+								</CancelButton>
+							</CardActions>
+						</>
+					)}
 				</Card>
 			</div>
 		</DataBuyProvider>
@@ -213,20 +234,23 @@ export default Buy;
 
 export const getServerSideProps = async (context) => {
 
-	const session = await getSession(context)
+	const session = await getSession(context);
 
 	if (!session) {
 		return {
 			redirect: {
 				destination: process.env.BUY_REDIRECT_LOGIN,
-				permanent: false
-			}
-		}
+				permanent: false,
+			},
+		};
 	}
+
+	const buyEstateEmail = await getBuyEstateEmail(session.user.email);
 
 	return {
 		props: {
-			username: session.user.name
-		}
-	}
-}
+			username: session.user.name,
+			countRequests: buyEstateEmail.rows[0].count,
+		},
+	};
+};

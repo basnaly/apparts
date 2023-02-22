@@ -55,7 +55,9 @@ const DialogEstateForm = () => {
 	};
 
 	const saveEstate = async () => {
+
 		const response = await fetch("/api/appart-data", {
+			
 			method: "POST",
 			body: JSON.stringify({
 				newEstate: {

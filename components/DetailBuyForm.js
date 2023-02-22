@@ -6,6 +6,7 @@ import DynamicInputAddRequest from "./DynamicInputAddRequest";
 import { TitleBuyStyled } from "@/styles/StyledComponents";
 
 const DetailBuyForm = () => {
+	
 	const {
 		preferAreaEstate,
 		setPreferAreaEstate,

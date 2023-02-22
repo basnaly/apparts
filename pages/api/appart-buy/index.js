@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react";
-import { pool } from "../../../lib/sqldb";
+import { getBuyEstateRows, pool } from "../../../lib/sqldb";
 
 const handler = async (req, res) => {
 
@@ -19,8 +19,8 @@ const handler = async (req, res) => {
 
 		const result = await pool.query(
 			`INSERT INTO buyestate 
-	(id, currency, priceMin, priceMax, unit, areaMin, areaMax, bedroomsMin, bedroomsMax, bathroomsMin, bathroomsMax, isHome, isCottage, isAppartment, preferAreaEstate, yearbuildMin, yearbuildMax, floorMin, floorMax, parkingMin, parkingMax, addRequest, user) 
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23)`,
+	(id, currency, priceMin, priceMax, unit, areaMin, areaMax, bedroomsMin, bedroomsMax, bathroomsMin, bathroomsMax, isHome, isCottage, isAppartment, preferAreaEstate, yearbuildMin, yearbuildMax, floorMin, floorMax, parkingMin, parkingMax, addRequest, email, created_at) 
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24)`,
 			[
 				newBuyEstate.id,
 				newBuyEstate.currency,
@@ -45,10 +45,16 @@ const handler = async (req, res) => {
 				newBuyEstate.parkingMax,
 				newBuyEstate.addRequest,
 				session.user.email,
+				new Date(),
 			]
 		);
 		res.status(201).json(result);
-	}     
+
+	} else if (req.method === "GET") {
+
+		const buyEstateRows = await getBuyEstateRows()
+		res.status(200).json({count: buyEstateRows?.rows?.[0]?.count})
+	}
 };
 
 export default handler;

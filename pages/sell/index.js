@@ -32,7 +32,7 @@ const Sell = ({ data }) => {
 
 export default Sell;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     
 	const estateListByAction = await getEstateListByAction("sell");
 

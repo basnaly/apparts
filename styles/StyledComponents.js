@@ -265,3 +265,29 @@ export const DialogContentTextStyled = styled(DialogContentText)`
 export const DialogTitleStyled = styled(DialogTitle)`
 	font-size: 1.5rem;
 `;
+
+export const StatusStyled = styled.div`
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: ${COLORS.scarlet};
+	margin: 10px 10px;
+`;
+
+export const StatusMessageStyled = styled.div`
+	font-size: 1.2rem;
+	// font-weight: bold;
+	color: ${COLORS.scarlet};
+	margin: 0px 10px 10px;
+`;
+
+export const RequestsStyled = styled.div`
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: black;
+	margin: 10px;
+`;
+
+export const DateRequestsStyled = styled.div`
+	font-weight: bold;
+	color: black;
+`;
